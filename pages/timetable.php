@@ -2,6 +2,8 @@
 
 <div id="ade"></div>
 
+<p>un test</p>
+
 <script >
 	$.ajax({
 		url: "functions/ade.php?action=getRessources",
