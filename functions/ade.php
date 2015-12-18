@@ -39,6 +39,18 @@ switch($action){
 		$res=$req->fetchAll(PDO::FETCH_ASSOC);
 		break;
 
+	case "getRessourcesByName":
+		$name = isset($_GET["name"]) ? $_GET["name"] : "1";
+		if($name == "")
+			$name = "1";
+		// if($name!="1")
+		// 	$name="'".implode("','",explode(",",$name))."'";
+
+		$req=$db->prepare("SELECT * FROM ressources WHERE Name LIKE \"%".$name."%\" ORDER BY Name");
+		$req->execute();
+		$res=$req->fetchAll(PDO::FETCH_ASSOC);
+		break;
+
 	default:
 		$res=array("ACTION SET NOT FOUND");
 		break;

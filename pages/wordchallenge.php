@@ -71,9 +71,11 @@
 	<?php
 
 	  $tab = array ("test","test2");
-    $t = array_rand($tab,2);
-    echo $t;
-
+	  
+	  $i=round(mt_rand(0, count($tab) - 1)); // Entier aléatoire entre 0 et le numéro de la dernière case du tableau (count($tab) - 1).
+    //$t = array_rand($tab,2);
+	//echo $tab[$t[0]];
+	echo $tab[$i];
 ?>" disabled="disabled">
 	<input class="bt" type="submit" value="Vainqueur ?">
 </form>

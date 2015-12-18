@@ -1,5 +1,6 @@
 <?php
-	
+
+
 function loadDashBoard(){
 ?>
     <table class="table">
@@ -12,8 +13,8 @@ function loadDashBoard(){
                 </tr>
             </thead>
 <?php
-	
-    	  $con = mysqli_connect("localhost","root","","imr18") or die('erreur');
+
+    	  $con = mysqli_connect("imr18.fr","sqlimr","P42A0;ch-A3_8","imr") or die('erreur');
         $request = mysqli_query($con, "SELECT * FROM tasks ORDER BY deadline") or die('erreur2');
 
         while ($data = mysqli_fetch_array($request)){

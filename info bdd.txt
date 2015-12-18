@@ -1,5 +1,0 @@
-host : imr2018.fr:3306
-bdd : imr 
-user : sqlimr
-pass : P42A0;ch-A3_8
-phpmyadmin : imr18.fr/sqladmin

@@ -10,6 +10,10 @@
   animation-duration: 2s;
 }
 
+.innerLink {
+  cursor: pointer;
+}
+
 @keyframes date_heure {
   from { color: #161616; }
   to { color: white; }

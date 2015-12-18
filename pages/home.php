@@ -57,7 +57,7 @@
 </div>
 
 <div class="row">
-	<a href="index.php?page=calendar">
+	<a class="innerLink" data_target="agenda">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<i class="icon-calendar icon-4x"></i>
@@ -68,7 +68,7 @@
 		</div>
 	</a>
 
-	<a href="index.php?page=moon">
+	<a class="innerLink" data_target="moon">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<i class="icon-moon icon-4x"></i>
@@ -80,7 +80,7 @@
 	</a>
 
 
-	<a href="index.php?page=wordchallenge">
+	<a class="innerLink" data_target="wordchallenge">
 		<div class="col-sm-6 col-md-4">
 			<div class="thumbnail">
 				<i class="icon-bullhorn icon-4x"></i>
