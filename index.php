@@ -13,7 +13,7 @@
 	<meta name="author" content="François Le Roux">
 
 	<title>Home</title>
-  <!-- yo -->
+  <!-- yoipojm j -->
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
