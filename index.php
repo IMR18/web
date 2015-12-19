@@ -119,20 +119,20 @@ include($content);
       <p class="self">Hello !</p>
       <p class="self">Hello !</p>
       <p class="self">Hello !</p>
+      <p class="other">Hello !</p>
       <p class="self">Hello !</p>
       <p class="self">Hello !</p>
-      <p class="self">Hello !</p>
-      <p class="self">Hello !</p>
+      <p class="other">Hello !</p>
       <p class="self">Hello !</p>
       <p class="self">Hello !</p>
     </div>
   </div>
   <header id="chatboxHeader">
-    <p>IMR18</p>
+    <p>IMR18 (3)</p>
   </header>
   <form id="chatboxFooter">
-    <input type="text" id="chatboxInput" size="29">
-    <input type="submit" value="Envoyer"/>
+    <input type="text" id="chatboxInput" size="37">
+    <i class="icon-comments"></i>
   </form>
 </div>
 </body>
