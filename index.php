@@ -10,10 +10,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta charset="UTF-8">
-	<meta name="author" content="François Le Roux">
+	<meta name="author" content="ENSSAT IMR promotion 2018">
 
 	<title>Home</title>
-  <!-- yoipojm j -->
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
