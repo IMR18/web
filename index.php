@@ -24,7 +24,7 @@
 	<script src="js/jquery-ui-1.9.2.min.js"></script>
 	<script src="js/jquery.bpopup.min.js"></script>
 
-  
+
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	  <script type="text/javascript" src="js/date_heure.js"></script>
 	  <script src="js/script.js"></script>
@@ -83,7 +83,7 @@
   </div><!-- /.container-fluid -->
 </nav>
 <div id="shortcuts" style="width:80%;display:none;">
-	<?php include "pages/shortcuts.php"; ?> 
+	<?php include "pages/shortcuts.php"; ?>
 </div>
 	<div id="main_container" class="container">
     <?php
@@ -105,7 +105,23 @@
       include($content);
        */ ?>
     </div>
-
+    <div id="chatbox" style="display:table;background-color: rgba(255,255,255,0.9);position:fixed; height:300px; width: 300px; right: 20px;bottom: 5px;">
+      <div id="chatboxTextarea" style="display: table;position:absolute;padding: 30px 5px 35px 5px; height: 100%;width: 100%">
+      <div style="display:table-cell; vertical-align:bottom;width:300px;">
+        <p style="margin:0;word-wrap: break-word">Hello my name is Pierre. How are you?! I'm fine thanks you Pierre !</p>
+        <p style="margin:0;word-break: break-all;">Hello !</p>
+        <p style="text-align:right;margin:0;word-break: break-all;">Hello !</p>
+      </div>
+      </div>
+      <header id="chatboxHeader" style="cursor: pointer; text-align:center; height: 30px;background-color: grey; position: absolute; top: 0;width: 100%">
+        <h5>IMR18</h5>
+      </header>
+      <form id="chatboxFooter" style="display:inline-block;position:absolute; bottom: 0; height:30px; width: 100%">
+        <input type="text" id="chatboxNickname" size="3">
+        <input type="text" id="chatboxInput" size="20">
+        <input type="submit" value="Envoyer"/>
+      </form>
+    </div>
 </body>
 
 </html>
