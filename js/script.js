@@ -35,7 +35,13 @@ $( document ).ready(function() {
 			isChatboxOpen = true;
 		}
 	});
+	chatboxHighlight();
+	setInterval(function() {chatboxHighlight()}, 2000);
 });
+
+function chatboxHighlight() {
+	$("#chatboxHeader").animate({"background-color" : "#555"}, 1000).animate({"background-color" : "#161616"}, 1000);
+}
 
 function getPage($src,$dest){
 	$.ajax({

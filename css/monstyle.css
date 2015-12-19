@@ -31,7 +31,7 @@
 	/*background-image:linear-gradient(#A9A9F5, #A9A9F5);*/
 }
 
-[class^="icon-"], [class*=" icon-"] {
+#main_container [class^="icon-"], [class*=" icon-"] {
 	text-decoration:none;
 	font-size:120px;
 	color:#282828;
@@ -89,7 +89,7 @@ form p{
 	font-size:40px;
 	display: inline-block;
 	font-family: 'Aladin', cursive;
-
+icon-large
 }
 .bt{
 	width:100%;
@@ -97,6 +97,94 @@ form p{
 	display: block;
 	font-size:50px;
 	font-family: 'Aladin', cursive;
+}
+
+/* ---------------------------- CHATBOX ---------------------------*/
+
+#chatbox {
+  display:table;
+  position:fixed;
+  height: 300px;
+  width: 300px;
+  right: 20px;
+  bottom: 0px;
+  background-color: rgba(255,255,255,0.9);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+#chatboxHeader {
+  position: absolute;
+  cursor: pointer;
+  width: 100%;
+  height: 30px;
+  top: 0;
+  text-align:center;
+  background-color: #161616;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+}
+
+#chatboxHeader p {
+  line-height: 30px;
+}
+
+#chatboxTextarea {
+  display: table;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 28px 5px 30px 5px;
+  border: 2px solid #161616;
+  border-bottom: 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  table-layout: fixed;
+  overflow: hidden;
+}
+
+#chatboxTextarea div {
+  display: table-cell;
+  position: absolute;
+  height: calc(100% - 60px);
+  left: 5px;
+  right: -15px;
+  overflow-y: scroll;
+}
+
+.other, .self {
+  border-radius; 5px;
+  word-wrap: break-word;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+}
+
+.other {
+  background-color: #DDD;
+  text-align: left;
+}
+
+.self {
+  background-color: #424242;
+  text-align: right;
+  color: white;
+}
+
+#chatboxFooter {
+  position:absolute;
+  bottom: 0;
+  height: 35px;
+  width: 100%;
+  padding-top: 5px;
+  background-color: white;
+  border-left: 2px solid #161616;
+  border-right: 2px solid #161616;
+}
+
+#chatboxInput {
+  margin-right: 5px;
 }
 
 /* ----------------------------- MEDIA ----------------------------*/
