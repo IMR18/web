@@ -132,7 +132,7 @@ form p{
 
 #chatboxTextarea {
   display: table;
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
   padding: 30px 5px 30px 5px;
