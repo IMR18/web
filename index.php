@@ -17,10 +17,13 @@
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui-1.9.2.css">
 	<link rel="stylesheet" type="text/css" href="css/monstyle.css">
 	<link href='https://fonts.googleapis.com/css?family=Aladin|Linden+Hill' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-ui-1.9.2.min.js"></script>
+	<script src="js/jquery.bpopup.min.js"></script>
 
   
 	  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -40,9 +43,8 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.php?page=home">IMR1</a>
+      <a class="navbar-brand innerLink" data-target="main_container" data-src="home" >IMR1</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<div class="nav navbar-left" style="text-align:center;height:50px;">
@@ -61,11 +63,12 @@
         </div>
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
+<a id="shortCut" modal-content="pages/shortcuts.php" class="glyphicon glyphicon-menu-hamburger white btn-lg"  style="color:white" ></a>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a class="innerLink" data_target="agenda">Agenda</a></li>
-        <li><a class="innerLink" data_target="moon">Croissantage</a></li>
-        <li><a class="innerLink" data_target="timetable">Emploi du temps</a></li>
+        <li><a class="innerLink" data-target="main_container" data-src="agenda">Agenda</a></li>
+        <li><a class="innerLink" data-target="main_container" data-src="moon">Croissantage</a></li>
+        <li><a class="innerLink" data-target="main_container" data-src="timetable">Emploi du temps</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -80,7 +83,9 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
+<div id="shortcuts" style="width:80%;display:none;">
+	<?php include "pages/shortcuts.php"; ?> 
+</div>
 	<div id="main_container" class="container">
     <?php
       //session_start();
