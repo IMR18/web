@@ -4,6 +4,6 @@
   <?php
   include("../functions/functions.php");
   	loadDashBoard();
-    include ('addtask.php');
+    include ('pages/addtask.php');
       ?>
 </div>
