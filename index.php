@@ -106,7 +106,7 @@
        */ ?>
     </div>
     <div id="chatbox" style="display:table;background-color: rgba(255,255,255,0.9);position:fixed; height:300px; width: 300px; right: 20px;bottom: 5px;">
-      <div id="chatboxTextarea" style="display: table;position:absolute;padding: 30px 5px 35px 5px; height: 100%;width: 100%">
+      <div id="chatboxTextarea" style="display: table;position:absolute;padding: 30px 5px 35px 5px; height: 30px;width: 100%">
       <div style="display:table-cell; vertical-align:bottom;width:300px;">
         <p style="margin:0;word-wrap: break-word">Hello my name is Pierre. How are you?! I'm fine thanks you Pierre !</p>
         <p style="margin:0;word-break: break-all;">Hello !</p>

@@ -15,6 +15,26 @@ $( document ).ready(function() {
 			autoClose:false
 		});
 	});
+
+	$("#chatboxFooter").hide();
+	$("#chatboxTextarea").hide();
+	$("#chatbox").css({height: "30px"});
+	isChatboxOpen = false;
+
+	$("#chatboxHeader").click(function () {
+		if (isChatboxOpen) {
+			$("#chatboxFooter").fadeOut();
+			$("#chatboxTextarea").fadeOut();
+			$("#chatbox").animate({height: "30px"});
+			isChatboxOpen = false;
+		}
+		else {
+			$("#chatboxFooter").fadeIn();
+			$("#chatboxTextarea").fadeIn();
+			$("#chatbox").animate({height: "300px"});
+			isChatboxOpen = true;
+		}
+	});
 });
 
 function getPage($src,$dest){
