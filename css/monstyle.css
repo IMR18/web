@@ -9,7 +9,9 @@
   animation-name: date_heure;
   animation-duration: 2s;
 }
-
+.bPopupModal{
+display: none;
+} 
 .innerLink {
   cursor: pointer;
 }

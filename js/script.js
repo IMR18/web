@@ -7,12 +7,13 @@ $( document ).ready(function() {
 
 	$("#shortcuts").draggable();
 
-	$('#shortCut').on('click', function () {
-		$('#shortcuts').bPopup({
+		$("body").on('click','.bPopupModal-src',function(){
+			target=$(this).attr('modal-target');
+			console.log(target);
+		$('#'+target).bPopup({
 			easing: 'easeOutBack', //uses jQuery easing plugin
 			speed: 450,
 			transition: 'slideDown',
-			autoClose:false
 		});
 	});
 

@@ -10,8 +10,8 @@ else{
 	exit;
 }
 
-require("functions_ade.php");
-$db=PDO("imr18.fr","sqlimr","P42A0;ch-A3_8","imr");
+require("functions.php");
+$db=PDO();
 switch($action){
 	case "updateALL":
 		$res=updateRessources($db,ressources2update($db));

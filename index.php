@@ -62,7 +62,7 @@ include('functions/functions.php');
           </div>
           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
-        <a id="shortCut" modal-content="pages/shortcuts.php" class="glyphicon glyphicon-menu-hamburger white btn-lg"  style="color:white" ></a>
+        <a  modal-target="shortcuts" class="bPopupModal-src glyphicon glyphicon-menu-hamburger white btn-lg"  style="color:white" ></a>
 
         <ul class="nav navbar-nav navbar-right">
           <li><a class="innerLink" data-target="main_container" data-src="agenda">Agenda</a></li>
@@ -82,7 +82,7 @@ include('functions/functions.php');
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav>
-  <div id="shortcuts" style="width:80%;display:none;">
+  <div class="bPopupModal" id="shortcuts">
     <?php include "pages/shortcuts.php"; ?>
   </div>
   <div id="main_container" class="container">

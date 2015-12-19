@@ -15,7 +15,7 @@ if(isset($_POST['addtask'])){
 
 mysqli_close($con);
 ?>
-<div class="jumbotron">
+<div class="bPopupModal" id="ajouterUneTache">
   <form class="form-horizontal" method="POST">
   	<h3>Ajouter une tâche</h3>
   <div class="form-group">
