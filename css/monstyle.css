@@ -159,12 +159,12 @@ form p{
 }
 
 .other {
-  background-color: #BBBBBB;
+  background-color: #DDD;
   text-align: left;
 }
 
 .self {
-  background-color: #161616;
+  background-color: #424242;
   text-align: right;
   color: white;
 }
