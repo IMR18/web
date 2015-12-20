@@ -40,65 +40,65 @@ display: none;
 }
 
 .podium{
-	width:50%;
-	margin-right:9%;
-	min-height: 500px;
-	padding-top: 10%;
-	position:relative;
-	display: inline-block;
-	/*
-	background: url("../img/podium.png");
-	background-size: 100% 60%;
-	background-position: center;
-	background-repeat: no-repeat;*/
+  width:50%;
+  margin-right:9%;
+  min-height: 350px;
+  position:relative;
+  display: inline-block;
+  /*
+  background: url("../img/podium.png");
+  background-size: 100% 60%;
+  background-position: center;
+  background-repeat: no-repeat;*/
 }
 
 #pod{
-	width:100%;
-	position:absolute;
-	bottom:0;
-	left:0;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
 }
 
 .photo_pod{
-	display:inline-block;
-	width:33%;
-	padding-left: 7%;
+  display:inline-block;
+  width:33%;
+  padding-left: 7%;
 }
 
 
 #deux{
-	padding-top: 5%;
-	float:left;
+  padding-top: 5%;
+  float:left;
 }
 
 #trois{
-	padding-top: 10%;
-	float: right;
+  padding-top: 10%;
+  float: right;
 
 }
 .img-circle{
-	width:90%;
+  width:90%;
 }
 
 form{
-	width:40%;
-	display: inline-block;
-text-align: center;
+  width:40%;
+  float: right;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 form p{
-	font-size:40px;
-	display: inline-block;
-	font-family: 'Aladin', cursive;
-icon-large
+  font-size:40px;
+  display: inline-block;
+  font-family: 'Aladin', cursive;
 }
+
 .bt{
-	width:100%;
-	margin-top:5%;
-	display: block;
-	font-size:50px;
-	font-family: 'Aladin', cursive;
+  width:100%;
+  margin-top:5%;
+  display: block;
+  font-size:50px;
+  font-family: 'Aladin', cursive;
 }
 
 /* ---------------------------- CHATBOX ---------------------------*/

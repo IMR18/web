@@ -1,58 +1,87 @@
-$( document ).ready(function() {
-	getPage("home","main_container");
+//IMR APP
+var imrApp = angular.module('imrApp', ['ngRoute']);
 
-	$("body").on('click','.innerLink',function(){
-		getPage($(this).attr("data-src"),$(this).attr("data-target"));
-	});
+// ROUTE CONFIGURATION
+// L'url localhost/#page utilise le template models/page.html avec le controller pageController
+imrApp.config(['$routeProvider', function($routeProvider) {
+  console.log($routeProvider);
+  $routeProvider.
+      when('/home', {
+        templateUrl: 'models/home.html',
+        controller: 'homeController'
+      })
+      .when('/agenda', {
+        templateUrl: 'models/agenda.html',
+        controller: 'agendaController'
+      })
+      .when('/formulaire', {
+        templateUrl: 'models/formulaire.html',
+        controller: 'formulaireController'
+      })
+      .when('/croissant', {
+        templateUrl: 'models/croissant.html',
+        controller: 'croissantController'
+      })
+      .when('/wordchallenge', {
+        templateUrl: 'models/wordchallenge.html',
+        controller: 'wordchallengeController'
+      })
+      .otherwise({
+        templateUrl: 'models/home.html',
+        controller: 'homeController'
+      });
+}]);
 
-	$("#shortcuts").draggable();
-
-		$("body").on('click','.bPopupModal-src',function(){
-			target=$(this).attr('modal-target');
-			console.log(target);
-		$('#'+target).bPopup({
-			easing: 'easeOutBack', //uses jQuery easing plugin
-			speed: 450,
-			transition: 'slideDown',
-		});
-	});
-
-	$("#chatboxFooter").hide();
-	$("#chatboxTextarea").hide();
-	$("#chatbox").css({height: "30px"});
-	isChatboxOpen = false;
-
-	$("#chatboxHeader").click(function () {
-		if (isChatboxOpen) {
-			$("#chatboxFooter").fadeOut();
-			$("#chatboxTextarea").fadeOut();
-			$("#chatbox").animate({height: "30px"});
-			isChatboxOpen = false;
-		}
-		else {
-			$("#chatboxFooter").fadeIn();
-			$("#chatboxTextarea").fadeIn();
-			$("#chatbox").animate({height: "300px"});
-			isChatboxOpen = true;
-		}
-	});
-	chatboxHighlight();
-	setInterval(function() {chatboxHighlight()}, 2000);
+// CONTROLLERS
+imrApp.controller('mainController', function($scope, Page) {
+  $scope.Page = Page;
 });
 
-function chatboxHighlight() {
-	$("#chatboxHeader").animate({"background-color" : "#555"}, 1000).animate({"background-color" : "#161616"}, 1000);
-}
+imrApp.controller('homeController', function($scope, Page) {
+  Page.setTitle("Home");
+});
 
-function getPage($src,$dest){
-	$.ajax({
-		url: "functions/ajax.php?action=getPage&pageName="+$src,
-		method: "GET",
-		dataType: "json",
-		success:function (data) {
-			if(data[0]){
-				$("#"+$dest).html(data[1]);
-			}
-		},
-	});
-}
+imrApp.controller('agendaController', function($scope, Page) {
+  Page.setTitle("Agenda");
+});
+
+imrApp.controller('croissantController', function($scope, Page) {
+  Page.setTitle("Croissant");
+});
+
+imrApp.controller('formulaireController', function($scope, Page) {
+  Page.setTitle("Formulaire");
+  $scope.submit = function() {
+    alert("Et là tu submit");
+  };
+});
+
+imrApp.controller('wordchallengeController', function($scope, Page) {
+  Page.setTitle("Mot-à-caler");
+  $scope.mot = "C'est pas un mot mais osef";
+});
+
+// FACTORY
+imrApp.factory('Page', function(){
+  var title = 'Home';
+  return {
+    title: function() { return title; },
+    setTitle: function(newTitle) { title = newTitle; }
+  };
+});
+
+$(document).ready(function() {
+
+  $("#shortcuts").draggable();
+
+    $("body").on('click','.bPopupModal-src',function(){
+      target=$(this);
+    $('#'+target.attr('modal-target')).bPopup({
+      easing: 'easeOutBack', //uses jQuery easing plugin
+      speed: 450,
+      transition: 'slideDown',
+	  amsl:target.attr('modal-amsl'),
+    });
+  });
+
+});
