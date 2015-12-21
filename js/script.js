@@ -47,6 +47,7 @@ imrApp.controller('agendaController', function($scope, $http, Page) {
   $http.post('./php/agenda.php?action=getTasks').success(function(data, status, headers, config){
       $scope.tasks = data;
   });
+
 });
 
 imrApp.controller('croissantController', function($scope, Page) {

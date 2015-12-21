@@ -57,4 +57,15 @@ function couleurNiveau($num){
 	return $retour;
 }
 
+function add_task($db,$title,$description,$deadline,$worklevel){
+	if(isset($db&&$title&&$description&&$deadline&&$worklevel)){
+		$title=htmlentities($title);
+		$description=htmlentities($description);
+		$deadline=htmlentities($deadline);
+		$worklevel=htmlentities($worklevel);
+
+		$req=$db->prepare("INSERT INTO tasks VALUES ('', '$title', '$description', '$deadline','$worklevel')");
+		$req->execute();
+	}
+}
 ?>
