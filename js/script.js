@@ -53,13 +53,6 @@ imrApp.controller('croissantController', function($scope, Page) {
   Page.setTitle("Croissant");
 });
 
-imrApp.controller('formulaireController', function($scope, Page) {
-  Page.setTitle("Formulaire");
-  $scope.submit = function() {
-    alert("Et là tu submit");
-  };
-});
-
 imrApp.controller('wordchallengeController', function($scope, Page) {
   Page.setTitle("Mot-à-caler");
   $scope.mot = "C'est pas un mot mais osef";
@@ -84,8 +77,8 @@ $(document).ready(function() {
       easing: 'easeOutBack', //uses jQuery easing plugin
       speed: 450,
       transition: 'slideDown',
-	  amsl:target.attr('modal-amsl'),
+	    amsl:target.attr('modal-amsl'),
     });
-  });
+});
 
 });
