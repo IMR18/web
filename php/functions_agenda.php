@@ -8,6 +8,8 @@ function get_tasks($db){
 
 	foreach ($res as $key=>$task){
 
+		list($year, $month, $day) = explode('-', $task['deadline']);
+        $deadline = $day."-".$month."-".$year;
 		$deadlineDate = new DateTime($task['deadline']);
 	    $now = new DateTime();
 	    $interval = $now->diff($deadlineDate);
@@ -34,7 +36,7 @@ function get_tasks($db){
 	    }
 
 	    $res[$key]['timeleft']=$timeLeft;
-
+	    $res[$key]['deadline']=$deadline;
 	    $res[$key]['worklevel']=couleurNiveau($res[$key]['worklevel']);
 	}
 
