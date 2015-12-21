@@ -1,1 +1,19 @@
-<p>L'agenda est vide</p>
+<script type="text/javascript">getTasks()</script>
+
+<table class="table" >
+	<thead>
+		<tr class="active">
+			<td class="col-md-2">Echéance</td>
+			<td class="col-md-2">Date</td>
+			<td class="col-md-3">Titre</td>
+			<td>Description</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="task in tasks" class="{{task.worklevel}}">
+			<td>{{task.timeleft}}</td>
+			<td>{{task.deadline}}</td>
+			<td>{{task.title}}</td>
+			<td>{{task.description}}</td>
+	</tbody>
+</table>
