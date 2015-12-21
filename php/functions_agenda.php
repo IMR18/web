@@ -28,7 +28,7 @@ function get_tasks($db){
 	      }
 	      else if ($interval->format('%d') == 1) {
 	        $timeLeft = $timeLeft.$interval->format('%d jour');
-	      }
+	      }	
 
 	      if ($interval->format('%R%d') < 0 || $interval->format('%R%m') < 0) {
 	        $timeLeft = "Il y a ".$timeLeft;
@@ -58,11 +58,11 @@ function couleurNiveau($num){
 }
 
 function add_task($db,$title,$description,$deadline,$worklevel){
-	if(isset($db&&$title&&$description&&$deadline&&$worklevel)){
-		$title=htmlentities($title);
-		$description=htmlentities($description);
-		$deadline=htmlentities($deadline);
-		$worklevel=htmlentities($worklevel);
+	if(isset($db,$title,$description,$deadline,$worklevel)){
+		$title=$title;
+		$description=$description;
+		$deadline=$deadline;
+		$worklevel=$worklevel;
 
 		$req=$db->prepare("INSERT INTO tasks VALUES ('', '$title', '$description', '$deadline','$worklevel')");
 		$req->execute();

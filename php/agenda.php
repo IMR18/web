@@ -1,4 +1,6 @@
 <?php
+require("functions_agenda.php");
+
 if(isset($_GET["action"]))
 	$action=$_GET["action"];
 else{
@@ -7,11 +9,21 @@ else{
 	exit;
 }
 
-require("functions_agenda.php");
+
+$title=htmlentities($_GET["title"]);
+$description=htmlentities($_GET["description"]);
+$deadline=htmlentities($_GET["deadline"]);
+$worklevel=htmlentities($_GET["worklevel"]);
+
+
 $db=PDO();
 switch($action){
 	case "getTasks":
 		$res=get_tasks($db);
+		break;
+
+	case "addTask":
+		$res=add_task($db,$title,$description,$deadline,$worklevel);
 		break;
 }
 
