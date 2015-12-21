@@ -41,21 +41,12 @@ imrApp.controller('homeController', function($scope, Page) {
   Page.setTitle("Home");
 });
 
-imrApp.controller('agendaController', function($scope, Page) {
+imrApp.controller('agendaController', function($scope, $http, Page) {
   Page.setTitle("Agenda");
 
-  $scope.getTasks = function(){
   $http.post('./php/agenda.php?action=getTasks').success(function(data, status, headers, config){
-    if(data['status']){
-      $scope.task.id=$data["id"];
-      $scope.task.title=$data["title"];
-      $scope.task.description=$data["description"];
-      $scope.task.deadline=$data["deadline"];
-      $scope.task.worklevel=$data["worklevel"];
-    }
+      $scope.tasks = data;
   });
-  
-}
 });
 
 imrApp.controller('croissantController', function($scope, Page) {
