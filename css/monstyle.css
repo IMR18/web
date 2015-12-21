@@ -30,7 +30,6 @@ display: none;
 	transition: ease-in-out 0.2s;
 	transition-duration: all .5;
 	opacity: 0.6;
-	/*background-image:linear-gradient(#A9A9F5, #A9A9F5);*/
 }
 
 #main_container [class^="icon-"], [class*=" icon-"] {
