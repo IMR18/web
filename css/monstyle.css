@@ -12,6 +12,13 @@
 .bPopupModal{
 display: none;
 }
+
+.popUp{
+	padding:40px 20px;
+  background-image:linear-gradient(#555, #000);
+  border-radius: 20px;
+  box-shadow: 0 0 35px 15px #999;
+}
 .innerLink {
   cursor: pointer;
 }

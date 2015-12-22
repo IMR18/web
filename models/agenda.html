@@ -19,38 +19,38 @@
 	</tbody>
 </table>
 
-<form id="addtaskform" class="bPopupModal form-horizontal" ng-submit="submit()">
+<form id="addtaskform" novalidate  class="bPopupModal popUp form-horizontal" >
   	<h3 style="color:white;">Ajouter une tâche</h3>
   <div class="form-group">
     <label for="titre" class="col-sm-3 control-label" style="color:white;">Titre</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control" name="inputTitle" placeholder="Titre" required>
+      <input type="text" class="form-control" name="inputTitle" placeholder="Titre" ng-model="task.title" required>
     </div>
   </div>
   <div class="form-group">
     <label for="description" class="col-sm-3 control-label" style="color:white;">Description</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control" name="inputDescription" placeholder="Description de la tâche" required>
+      <input type="text" class="form-control" name="inputDescription" ng-model="task.description" placeholder="Description de la tâche" required>
     </div>
   </div>
 	<div class="form-group">
 		<label for="echeance" class="col-sm-3 control-label" style="color:white;">Echéance</label>
 		<div class="col-sm-9">
-			<input type="date" class="form-control" name="inputDate" required>
+			<input type="date" class="form-control" name="inputDate" ng-model="task.deadline" required>
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="niveau" class="col-sm-3 control-label" style="color:white;">Niveau de travail</label>
+		<label for="niveau" class="col-sm-3 control-label" style="color:white;" >Niveau de travail</label>
 		<div class="col-sm-9">
-			<div class="btn-group" data-toggle="buttons">
+			<div class="btn-group">
 				<label class="btn btn-default active">
-					<input type="radio" name="inputNiveau" value="1" checked="checked" required/> Faible
+					<input type="radio" name="inputNiveau" value="1" ng-model="task.worklevel" 	required/> Faible
 				</label>
 				<label class="btn btn-default">
-					<input type="radio" name="inputNiveau" value="2" /> Moyen
+					<input type="radio" name="inputNiveau" value="2" ng-model="task.worklevel" /> Moyen
 				</label>
 				<label class="btn btn-default">
-					<input type="radio" name="inputNiveau" value="3" /> Important
+					<input type="radio" name="inputNiveau" value="3" ng-model="task.worklevel" /> Important
 				</label>
 			</div>
 		</div>
@@ -58,22 +58,28 @@
 	<div class="form-group">
 		<label for="group" class="col-sm-3 control-label" style="color:white;">Groupe(s)</label>
 		<div class="col-sm-9">
-			<div class="btn-group" data-toggle="buttons">
+			<div class="btn-group" >
 				<label class="btn btn-default active">
-					<input type="radio" name="inputGroup" value="both" checked="checked" required/> Les deux
+					<input type="radio" name="inputGroup" ng-model="task.group" value="1" checked="checked" required/> Les deux
 				</label>
 				<label class="btn btn-default">
-					<input type="radio" name="inputGroup" value="info" /> Info
+					<input type="radio" name="inputGroup" ng-model="task.group" value="2" /> Info
 				</label>
 				<label class="btn btn-default">
-					<input type="radio" name="inputGroup" value="rt" /> RT
+					<input type="radio" name="inputGroup" ng-model="task.group" value="3" /> RT
 				</label>
 			</div>
 		</div>
 	</div>
+	<div class="form-group">
+    <label for="Cours" class="col-sm-3 control-label" style="color:white;">Cours</label>
+    <div class="col-sm-9">
+      <input type="text" class="form-control" name="inputCours" ng-model="task.UID" placeholder="Cours" >
+    </div>
+  </div>
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button name="addtask" type="submit" class="btn btn-primary">Ajouter</button>
+      <button name="addtask" type="submit" ng-click="addTask(task)" class="btn btn-primary">Ajouter</button>
     </div>
   </div>
   </form>

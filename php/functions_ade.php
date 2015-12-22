@@ -15,9 +15,7 @@ function date_compare($a, $b)
 	return $t1 - $t2;
 }
 
-function issetor(&$var, $default = false) {
-	return isset($var) ? $var : $default;
-}
+
 
 function ressources2update($db){
 	$res2update=array();
@@ -77,8 +75,8 @@ function updateRessources($db,$ressources,$startdate=null,$enddate=null,$GMT="+1
 				$end_d=date("Y/m/d",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTSTART'])));
 				$end_t=date("H:i:s",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTEND'])));
 				$description=desc2json($event['DESCRIPTION']);
-				$req=$db->prepare('insert into events (ressource, StartDate, StartTime, EndDate, EndTime, Title, Location, Description,Export) VALUES (?,?,?,?,?,?,?,?,?)');
-				$res=$req->execute(array($ressource,$start_d,$start_t,$end_d,$end_t,$event['SUMMARY'],issetor($event['LOCATION']),$description,$export_d));
+				$req=$db->prepare('insert into events (UID,ressource, StartDate, StartTime, EndDate, EndTime, Title, Location, Description,Export) VALUES (?,?,?,?,?,?,?,?,?,?)');
+				$res=$req->execute(array(issetor($event['UID']),$ressource,$start_d,$start_t,$end_d,$end_t,$event['SUMMARY'],issetor($event['LOCATION']),$description,$export_d));
 				$insertNb+=$res;
 			}
 		$nb[$ressource]=$insertNb;

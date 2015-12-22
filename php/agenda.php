@@ -8,23 +8,9 @@ else{
 	echo json_encode($res);
 	exit;
 }
+$p = json_decode(file_get_contents("php://input"));
 
-if(isset($_GET['title'])){
-	$title=htmlentities($_GET["title"]);
-}
 
-if(isset($_GET['description'])){
-	$description=htmlentities($_GET["description"]);
-}
-
-if(isset($_GET['deadline'])){
-	$deadline=htmlentities($_GET["deadline"]);
-}
-
-if(isset($_GET['worklevel'])){
-	$worklevel=htmlentities($_GET["worklevel"]);
-}
-	
 $db=PDO();
 switch($action){
 	case "getTasks":
@@ -32,7 +18,13 @@ switch($action){
 		break;
 
 	case "addTask":
-		$res=add_task($db,$title,$description,$deadline,$worklevel);
+		if(!is_object($p))
+	{
+		$res=array("addTask NO PARAMETERS");
+		echo json_encode($res);
+		exit;
+	}
+		$res=array(add_task($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->group),issetor($p->UID)));
 		break;
 }
 

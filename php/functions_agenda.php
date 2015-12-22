@@ -28,7 +28,7 @@ function get_tasks($db){
 	      }
 	      else if ($interval->format('%d') == 1) {
 	        $timeLeft = $timeLeft.$interval->format('%d jour');
-	      }	
+	      }
 
 	      if ($interval->format('%R%d') < 0 || $interval->format('%R%m') < 0) {
 	        $timeLeft = "Il y a ".$timeLeft;
@@ -57,15 +57,17 @@ function couleurNiveau($num){
 	return $retour;
 }
 
-function add_task($db,$title,$description,$deadline,$worklevel){
-	if(isset($db,$title,$description,$deadline,$worklevel)){
-		$title=$title;
-		$description=$description;
-		$deadline=$deadline;
-		$worklevel=$worklevel;
+function add_task($db,$title,$description,$deadline,$worklevel,$group,$UID){
+	if(isset($db,$title,$description,$deadline,$worklevel,$group)){
+		$title=htmlentities($title);
+		$description=htmlentities($description);
+		$deadline=htmlentities($deadline);
+		$worklevel=htmlentities($worklevel);
+		$group=htmlentities($group);
+		$UID=htmlentities($UID);
 
-		$req=$db->prepare("INSERT INTO tasks VALUES ('', '$title', '$description', '$deadline','$worklevel')");
-		return $req->execute();
+		$req=$db->prepare("INSERT INTO tasks (title,description,deadline,worklevel,groupe,ADE_UID) VALUES (?,?,?,?,?,?)");
+		return $req->execute(array($title,$description,$deadline,$worklevel,$group,$UID));
 	}
 }
 ?>

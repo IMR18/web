@@ -47,9 +47,16 @@ imrApp.controller('agendaController', function($scope, $http, Page) {
   $http.post('./php/agenda.php?action=getTasks').success(function(data, status, headers, config){
       $scope.tasks = data;
   });
-
+  $scope.addTask = function (task){
+$http.post('./php/agenda.php?action=addTask',task).success(function(data, status, headers, config){
+      msg="Erreur lors de l'ajout " + task.title;
+        if(data[0]){
+          msg=task.title+" a été ajouté avec succès";
+        }
+        alert(msg);
+    });
+}
 });
-
 imrApp.controller('croissantController', function($scope, Page) {
   Page.setTitle("Croissant");
 });
@@ -79,6 +86,7 @@ $(document).ready(function() {
       speed: 450,
       transition: 'slideDown',
 	    amsl:target.attr('modal-amsl'),
+      modalColor :"#860",
     });
 });
 
