@@ -197,13 +197,13 @@ form p{
   border-left: 2px solid #161616;
   border-right: 2px solid #161616;
 }
-
-#chatboxFooter button {
-  font-size: .71em;
+#chatboxInput {
+  width: 65%;
 }
 
 #chatboxSubmit {
-  padding-left: 5px;
+  font-size: .71em;
+  width: 30%;
 }
 
 #chatboxSubmit:hover {
