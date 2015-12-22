@@ -65,7 +65,7 @@ function add_task($db,$title,$description,$deadline,$worklevel){
 		$worklevel=$worklevel;
 
 		$req=$db->prepare("INSERT INTO tasks VALUES ('', '$title', '$description', '$deadline','$worklevel')");
-		$req->execute();
+		return $req->execute();
 	}
 }
 ?>

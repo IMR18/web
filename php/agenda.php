@@ -9,13 +9,22 @@ else{
 	exit;
 }
 
+if(isset($_GET['title'])){
+	$title=htmlentities($_GET["title"]);
+}
 
-$title=htmlentities($_GET["title"]);
-$description=htmlentities($_GET["description"]);
-$deadline=htmlentities($_GET["deadline"]);
-$worklevel=htmlentities($_GET["worklevel"]);
+if(isset($_GET['description'])){
+	$description=htmlentities($_GET["description"]);
+}
 
+if(isset($_GET['deadline'])){
+	$deadline=htmlentities($_GET["deadline"]);
+}
 
+if(isset($_GET['worklevel'])){
+	$worklevel=htmlentities($_GET["worklevel"]);
+}
+	
 $db=PDO();
 switch($action){
 	case "getTasks":
