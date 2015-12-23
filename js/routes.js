@@ -1,7 +1,6 @@
 // ROUTE CONFIGURATION
 // L'url localhost/#page utilise le template models/page.html avec le controller pageController
 imrApp.config(['$routeProvider', function($routeProvider) {
-  console.log($routeProvider);
   $routeProvider.
       when('/home', {
         templateUrl: 'models/home.html',
@@ -18,6 +17,10 @@ imrApp.config(['$routeProvider', function($routeProvider) {
       .when('/croissant', {
         templateUrl: 'models/croissant.html',
         controller: 'croissantController'
+      })
+      .when('/timetable', {
+        templateUrl: 'models/timetable.html',
+        controller: 'timetableController'
       })
       .when('/wordchallenge', {
         templateUrl: 'models/wordchallenge.html',

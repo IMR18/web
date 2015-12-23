@@ -32,7 +32,7 @@
 /* Icons
 ----------------------------------*/
 
-/* states and images */
+/* states and ../img */
 .ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
 
 
@@ -61,7 +61,7 @@
 .ui-widget {   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:13px; }
 .ui-widget .ui-widget { font-size: 1em; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 1em; }
-.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(images/ui-bg_glass_75_ffffff_1x400.png) 50% 50% repeat-x; color: #404040; }
+.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(../img/ui-bg_glass_75_ffffff_1x400.png) 50% 50% repeat-x; color: #404040; }
 .ui-widget-content a { color: #404040; }
 .ui-widget-header {
   font-weight:bold;
@@ -202,15 +202,15 @@
 /* Icons
 ----------------------------------*/
 
-/* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_222222_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(images/ui-icons_888888_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_454545_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(images/ui-icons_454545_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(images/ui-icons_2e83ff_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_f6cf3b_256x240.png); }
+/* states and ../img */
+.ui-icon { width: 16px; height: 16px; background-image: url(../img/ui-icons_222222_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(../img/ui-icons_222222_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(../img/ui-icons_222222_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(../img/ui-icons_888888_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(../img/ui-icons_454545_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(../img/ui-icons_454545_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(../img/ui-icons_2e83ff_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(../img/ui-icons_f6cf3b_256x240.png); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -401,8 +401,8 @@
 
 
 /* Overlays */
-.ui-widget-overlay { background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
-.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url(images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -khtml-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }/*
+.ui-widget-overlay { background: #aaaaaa url(../img/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
+.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url(../img/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -khtml-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }/*
  * jQuery UI Resizable 1.8.16
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
@@ -459,11 +459,11 @@
  *
  * http://docs.jquery.com/UI/Autocomplete#theming
  */
-.ui-autocomplete { 
-	position: absolute; 
+.ui-autocomplete {
+	position: absolute;
 	top: 0;
 	left: 0;
-	cursor: default; 
+	cursor: default;
 }
 
 /* workarounds */
@@ -485,9 +485,9 @@
 .ui-menu .ui-menu-divider { margin: 5px -2px 5px -2px; height: 0; font-size: 0; line-height: 0; border-width: 1px 0 0 0; }
 .ui-menu .ui-menu-item a { text-decoration: none; display: block; padding: 2px .4em; line-height: 1.5; zoom: 1; font-weight: normal; }
 .ui-menu .ui-menu-item a.ui-state-focus,
-.ui-menu .ui-menu-item a.ui-state-active { 
-  font-weight: normal; 
-  margin: 0; 
+.ui-menu .ui-menu-item a.ui-state-active {
+  font-weight: normal;
+  margin: 0;
   color: #ffffff;
   background: #0064cd;
   background-color: #0064cd;
@@ -754,8 +754,8 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
   opacity: 0.25;
 }
 
-.ui-dialog .ui-dialog-titlebar-close span { 
-  display: block; 
+.ui-dialog .ui-dialog-titlebar-close span {
+  display: block;
   margin: 1px;
   text-indent: 9999px;
 }
@@ -939,7 +939,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
     /*box-shadow: 0 2px 5px #ddd;*/
     box-shadow: inset 0 1px 0 #ffffff;
 }
-/* Fades and background-images don't work well together in IE6, drop the image */
+/* Fades and background-../img don't work well together in IE6, drop the image */
 * html .ui-tooltip {
     background-image: none;
 }
@@ -1250,7 +1250,7 @@ div.wijmo-wijmenu{
   color:#BFBFBF;
 }
 
-.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{    
+.wijmo-wijmenu .ui-state-default .wijmo-wijmenu-text{
   color:#BFBFBF;
 }
 
@@ -1390,4 +1390,3 @@ div.wijmo-wijmenu .wijmo-wijmenu-child .wijmo-wijmenu-text
   color:#BFBFBF;
   filter: none;
 }
-

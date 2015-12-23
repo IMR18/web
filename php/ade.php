@@ -25,6 +25,19 @@ switch($action){
 		$res=$req->fetchAll(PDO::FETCH_ASSOC);
 		break;
 
+		case "getEventsJson":
+			$ressources=isset($_GET["ressource"])?$_GET["ressource"]:"1";
+			if($ressources=="")
+			$ressources=1;
+			if($ressources!='1')
+			$ressources="'".implode("','",explode(",",$ressources))."'";
+			$req=$db->prepare("select '0' as id, StartDate as start,EndDate as end, Title as title from events where ressource in ($ressources) or 1=?");
+			$req->execute(array($ressources));
+			$res=$req->fetchAll(PDO::FETCH_ASSOC);
+			for($i=0;$i<sizeof($res);$i++)
+				$res[$i]['id']=$i+1;
+			break;
+
 	case "getRessources":
 		$ressources=isset($_GET["ressource"])?$_GET["ressource"]:"1";
 		if($ressources=="")
