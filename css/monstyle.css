@@ -92,6 +92,14 @@ form{
   text-align: center;
 }
 
+.btn-group {
+  text-align: left !important;
+}
+
+form h3 {
+  margin-bottom: 24px;
+}
+
 form p{
   font-size:40px;
   display: inline-block;

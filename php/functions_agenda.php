@@ -7,39 +7,46 @@ function get_tasks($db){
 	$res=$req->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach ($res as $key=>$task){
-
-		list($year, $month, $day) = explode('-', $task['deadline']);
-        $deadline = $day."-".$month."-".$year;
 		$deadlineDate = new DateTime($task['deadline']);
-	    $now = new DateTime();
-	    $interval = $now->diff($deadlineDate);
+		$now = new DateTime("today");
+		$interval = $now->diff($deadlineDate);
 
-	    if ($interval->format('%R%d') >= 0 && $interval->format('%R%m') >= 0) {
-	      $timeLeft = "";
-	      if ($interval->format('%R%m') > 0) {
-	        $timeLeft = $interval->format('%m mois');
-	        if ($interval->format('%d') != 0) {
-	          $timeLeft = $timeLeft." et ";
-	        }
-	      }
+		if (((int) $interval->format('%R%a')) >= 0) {
+			list($year, $month, $day) = explode('-', $task['deadline']);
+			$deadline = $day."-".$month."-".$year;
 
-	      if ($interval->format('%d') > 1) {
-	        $timeLeft = $timeLeft.$interval->format('%d jours');
-	      }
-	      else if ($interval->format('%d') == 1) {
-	        $timeLeft = $timeLeft.$interval->format('%d jour');
-	      }
+			if ($interval->format('%R%d') >= 0 && $interval->format('%R%m') >= 0) {
+				$timeLeft = "";
+				if ($interval->format('%R%m') > 0) {
+					$timeLeft = $interval->format('%m mois');
+					if ($interval->format('%d') != 0) {
+						$timeLeft = $timeLeft." et ";
+					}
+				}
 
-	      if ($interval->format('%R%d') < 0 || $interval->format('%R%m') < 0) {
-	        $timeLeft = "Il y a ".$timeLeft;
-	      }
-	    }
+				if ($deadlineDate->format('Y-m-d') == $now->format('Y-m-d')) {
+					$timeLeft = "Aujourdhui";
+				}
+				else if ($interval->format('%d') > 1) {
+					$timeLeft = $timeLeft.$interval->format('%d jours');
+				}
+				else if ($interval->format('%d') == 1) {
+					$timeLeft = $timeLeft.$interval->format('Demain');
+				}
 
-	    $res[$key]['timeleft']=$timeLeft;
-	    $res[$key]['deadline']=$deadline;
-	    $res[$key]['worklevel']=couleurNiveau($res[$key]['worklevel']);
+				if ($interval->format('%R%d') < 0 || $interval->format('%R%m') < 0) {
+					$timeLeft = "Il y a ".$timeLeft;
+				}
+			}
+
+			$res[$key]['timeleft']=$timeLeft;
+			$res[$key]['deadline']=$deadline;
+			$res[$key]['worklevel']=couleurNiveau($res[$key]['worklevel']);
+		}
+		else {
+			unset($res[$key]);
+		}
 	}
-
 	return $res;
 }
 
