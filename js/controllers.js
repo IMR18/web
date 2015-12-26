@@ -20,14 +20,14 @@ imrApp.controller('mainController', function($scope, Page) {
 
   $http.post('php/ade.php?action=getEventsJson&ressource=1492').success(function(data, status, headers, config){
       $scope.events = data;
-      $('#main_container').weekCalendar({
+      $('#timeTable').weekCalendar({
         data: $scope.events,
         date: new Date('2016-01-05T13:15:00.000+10:00'),
         minDate: new Date('2009-05-01T13:15:00.000+10:00'),
         maxDate: new Date('2019-05-20T13:15:00.000+10:00'),
         timeslotsPerHour: 2,
         height: function($calendar) {
-          return $(window).height()+200;
+          return $(window).height();
         },
         eventRender: function(calEvent, $event) {
           if (calEvent.end.getTime() < new Date().getTime()) {

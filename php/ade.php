@@ -31,11 +31,19 @@ switch($action){
 			$ressources=1;
 			if($ressources!='1')
 			$ressources="'".implode("','",explode(",",$ressources))."'";
-			$req=$db->prepare("select '0' as id, StartDate as start,EndDate as end, Title as title from events where ressource in ($ressources) or 1=?");
+			$req=$db->prepare("select UID as id, StartDate as start,EndDate as end, Title as title,location from events where ressource in ($ressources) or 1=?");
 			$req->execute(array($ressources));
 			$res=$req->fetchAll(PDO::FETCH_ASSOC);
-			for($i=0;$i<sizeof($res);$i++)
-				$res[$i]['id']=$i+1;
+			$classes=array('color_DEB887','color_5F9EA0','color_7FFF00','color_D2691E','color_FF7F50','color_FFF8DC','color_00FFFF','color_DC143C','color_00008B','color_008B8B','color_B8860B','color_A9A9A9','color_006400','color_BDB76B','color_8B008B','color_FF8C00');
+			for($i=0;$i<sizeof($res);$i++){
+				$titles[$i]=$res[$i]['title'];
+			}
+			$titles=array_values(array_unique($titles));
+			for($i=0;$i<sizeof($res);$i++){
+				$res[$i]['class']=$classes[(array_search($res[$i]['title'],$titles))];
+				$res[$i]['title']=	$res[$i]['title']."<br/>".	$res[$i]['location'];
+				unset(	$res[$i]['location']);
+			}
 			break;
 
 	case "getRessources":

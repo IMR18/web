@@ -51,6 +51,75 @@
     width: 65px;
 }
 
+
+.wc-cal-event.color_DEB887
+{
+background: #DEB887;
+}
+.wc-cal-event.color_5F9EA0
+{
+background: #5F9EA0;
+}
+.wc-cal-event.color_7FFF00
+{
+background: #7FFF00;
+}
+.wc-cal-event.color_D2691E
+{
+background: #D2691E;
+}
+.wc-cal-event.color_FF7F50
+{
+background: #FF7F50;
+}
+.wc-cal-event.color_FFF8DC
+{
+background: #FFF8DC;
+}
+.wc-cal-event.color_00FFFF
+{
+background: #00FFFF;
+}
+.wc-cal-event.color_DC143C
+{
+background: #DC143C;
+}
+.wc-cal-event.color_00008B
+{
+background: #00008B;
+}
+.wc-cal-event.color_008B8B
+{
+background: #008B8B;
+}
+.wc-cal-event.color_B8860B
+{
+background: #B8860B;
+}
+.wc-cal-event.color_A9A9A9
+{
+background: #A9A9A9;
+}
+.wc-cal-event.color_006400
+{
+background: #006400;
+}
+.wc-cal-event.color_BDB76B
+{
+background: #BDB76B;
+}
+.wc-cal-event.color_8B008B
+{
+background: #8B008B;
+}
+.wc-cal-event.color_FF8C00
+{
+background: #FF8C00;
+}
+
+
+
+
 .wc-header .wc-scrollbar-shim {
     width: 16px;
 }
@@ -169,7 +238,7 @@ table.wc-time-slots {
 .wc-hour-header.ui-state-active,
 .wc-hour-header.ui-state-default{
   border-width:0 0 1px 0;
-  height: 40px;
+  height: 34px;
 }
 
 .wc-hour-end, .wc-hour-header {
@@ -202,7 +271,6 @@ table.wc-time-slots {
 }
 
 .wc-cal-event {
-    background-color: #68a1e5;
   /* Modern Browsers */ opacity: 0.8;
   /* IE 8 */ -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
   /* IE 5-7 */ filter: alpha(opacity=80);

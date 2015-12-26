@@ -51,7 +51,7 @@
         endParam: 'end',
         businessHours: {start: 8, end: 19, limitDisplay: true},
         newEventText: 'Nouvel Evenement',
-        timeslotHeight: 20,
+        timeslotHeight: 17,
         defaultEventLength: 2,
         timeslotsPerHour: 4,
         minDate: null,
@@ -66,12 +66,12 @@
         switchDisplay: {},
         scrollToHourMillis: 500,
         allowEventDelete: false,
-        allowCalEventOverlap: false,
-        overlapEventsSeparate: false,
+        allowCalEventOverlap: true,
+        overlapEventsSeparate: true,
         totalEventsWidthPercentInOneColumn: 100,
-        readonly: false,
+        readonly: true,
         allowEventCreation: true,
-        hourLine: false,
+        hourLine: true,
         deletable: function(calEvent, element) {
           return true;
         },
@@ -157,7 +157,7 @@
          * one user.
          * @type {boolean}
          */
-        showAsSeparateUsers: true,
+        showAsSeparateUsers: false,
         /**
          * callback used to read user id from a user object.
          * @param {Object} user the user to retrieve the id from.
@@ -704,7 +704,7 @@
                 calendarNavHtml += '<button class=\"wc-today\">' + options.buttonText.today + '</button>';
                 calendarNavHtml += '<button class=\"wc-next\">' + options.buttonText.nextWeek + '</button>';
               calendarNavHtml += '</div>';
-              calendarNavHtml += '<h1 class=\"wc-title\"></h1>';
+              calendarNavHtml += '<h3 class=\"wc-title\"></h3>';
             calendarNavHtml += '</div>';
 
             $(calendarNavHtml).appendTo($calendarContainer);
@@ -1500,7 +1500,7 @@
           var eventClass, eventHtml, $calEventList, $modifiedEvent;
 
           eventClass = calEvent.id ? 'wc-cal-event' : 'wc-cal-event wc-new-cal-event';
-          eventHtml = '<div class=\"' + eventClass + ' ui-corner-all\">';
+          eventHtml = '<div class=\"' + eventClass +' ' + calEvent.class + ' ui-corner-all\">';
           eventHtml += '<div class=\"wc-time ui-corner-top\"></div>';
           eventHtml += '<div class=\"wc-title\"></div></div>';
 

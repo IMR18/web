@@ -22,6 +22,21 @@ function issetor(&$var, $default = null) {
 	return isset($var) ? $var : $default;
 }
 
+
+function WordSum($word)
+{
+    $cnt = 0;
+    $word = strtoupper(trim($word));
+    $len = strlen($word);
+
+    for($i = 0; $i < $len; $i++)
+    {
+        $cnt += ord($word[$i]) - 64;
+    }
+
+    return $cnt;
+}
+
 //vos fonctions generiques ici
 
 ?>
