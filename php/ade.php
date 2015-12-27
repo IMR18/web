@@ -1,7 +1,7 @@
 <?php
 if(isset($_GET["action"]))
 	$action=$_GET["action"];
-else{
+else {
 	$res=array("NO ACTION SET");
 	echo json_encode($res);
 	exit;
@@ -15,9 +15,7 @@ switch($action){
 		break;
 
 	case "getEvents":
-		$ressources=isset($_GET["ressource"])?$_GET["ressource"]:"1";
-		if($ressources=="")
-		$ressources=1;
+		$ressources=isset($_GET["ressource"]) && !empty($_GET["ressource"]) ? $_GET["ressource"] : "1";
 		if($ressources!='1')
 		$ressources="'".implode("','",explode(",",$ressources))."'";
 		$req=$db->prepare("select * from events where ressource in ($ressources) or 1=?");
@@ -26,9 +24,7 @@ switch($action){
 		break;
 
 		case "getEventsJson":
-			$ressources=isset($_GET["ressource"])?$_GET["ressource"]:"1";
-			if($ressources=="")
-			$ressources=1;
+			$ressources=isset($_GET["ressource"]) && !empty($_GET["ressource"]) ? $_GET["ressource"] : "1";
 			if($ressources!='1')
 			$ressources="'".implode("','",explode(",",$ressources))."'";
 			$req=$db->prepare("select UID as id, StartDate as start,EndDate as end, Title as title,location from events where ressource in ($ressources) or 1=?");
@@ -47,9 +43,7 @@ switch($action){
 			break;
 
 	case "getRessources":
-		$ressources=isset($_GET["ressource"])?$_GET["ressource"]:"1";
-		if($ressources=="")
-		$ressources=1;
+		$ressources=isset($_GET["ressource"]) && !empty($_GET["ressource"]) ? $_GET["ressource"] : "1";
 		if($ressources!='1')
 		$ressources="'".implode("','",explode(",",$ressources))."'";
 		$req=$db->prepare("select * from ressources where number in ($ressources) or 1=?");
@@ -58,9 +52,8 @@ switch($action){
 		break;
 
 	case "getRessourcesByName":
-		$name = isset($_GET["name"]) ? $_GET["name"] : "1";
-		if($name == "")
-			$name = "1";
+		$name = isset($_GET["name"]) && !empty($_GET["name"]) ? $_GET["name"] : "1";
+
 		// if($name!="1")
 		// 	$name="'".implode("','",explode(",",$name))."'";
 

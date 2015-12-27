@@ -65,16 +65,15 @@ function couleurNiveau($num){
 }
 
 function add_task($db,$title,$description,$deadline,$worklevel,$group,$UID){
-	if(isset($db,$title,$description,$deadline,$worklevel,$group)){
-		$title=htmlentities($title);
-		$description=htmlentities($description);
-		$deadline=htmlentities($deadline);
-		$worklevel=htmlentities($worklevel);
-		$group=htmlentities($group);
-		$UID=htmlentities($UID);
+	$title=htmlentities($title);
+	$description=htmlentities($description);
+	$deadline=htmlentities($deadline);
+	$worklevel=htmlentities($worklevel);
+	$group=htmlentities($group);
+	$UID=htmlentities($UID);
 
-		$req=$db->prepare("INSERT INTO tasks (title,description,deadline,worklevel,groupe,ADE_UID) VALUES (?,?,?,?,?,?)");
-		return $req->execute(array($title,$description,$deadline,$worklevel,$group,$UID));
-	}
+	$req=$db->prepare("INSERT INTO tasks (title,description,deadline,worklevel,groupe,ADE_UID) VALUES (?,?,?,?,?,?)");
+	
+	return $req->execute(array($title,$description,$deadline,$worklevel,$group,$UID));
 }
 ?>
