@@ -11,20 +11,11 @@ if(isset($_GET['action']))
 			$word=searchForCurrentWord();
 			
 			if($word===false) // No current word
-				{
-				$word=generateWord();
-				
-				if($word===false)
-					$res=array('error'=>'No word left in database');
-				elseif(addWordToDB($word, microtime())===false)
-					$res=array('error'=>'DB Failure');
-				}
+				$res=array('error'=>'No word left in database');
 			elseif($word===true) // Database failure
 				$res=array('error'=>'DB Failure');
-				
-			if(!isset($res)) // No errors
+			else
 				$res=array('word'=>$word); // No sanity check as words are added by administrators.
-
 		break;
 		case 'getTop3':
 		
