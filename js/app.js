@@ -1,1 +1,1 @@
-var imrApp = angular.module('imrApp', ['ngRoute']);
+var imrApp = angular.module('imrApp', ['ngRoute','angucomplete-alt']);

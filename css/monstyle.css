@@ -88,8 +88,8 @@ display: none;
 
 form{
   width:40%;
-  float: right;
-  text-align: center;
+  /*float: right;
+  text-align: center;*/
 }
 
 .btn-group {
@@ -113,6 +113,35 @@ form p{
   font-size:50px;
   font-family: 'Aladin', cursive;
 }
+
+
+
+
+
+/* ---------------------------- AGENDA ---------------------------*/
+
+.highlight{
+	color:blue;
+}
+
+.angucomplete-dropdown {
+    position: absolute;
+    background-color: white;
+    width:95%;
+    z-index: 99999;
+    overflow-y: auto;
+    max-height: 150px; // your preference
+    text-align: left !important;
+}
+
+
+
+
+
+
+
+
+
 
 /* ---------------------------- CHATBOX ---------------------------*/
 

@@ -72,9 +72,9 @@ function updateRessources($db,$ressources,$startdate=null,$enddate=null,$GMT="+1
 		if($events)
 			foreach ($events as $event) {
 				$export_d=date("Y/m/d H:i:s",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTSTAMP'])));
-				$start_d=date("c",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTSTART'])));
+				$start_d=date("Y-m-d",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTSTART'])));
 				$start_t=date("H:i:s",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTSTART'])));
-				$end_d=date("c",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTEND'])));
+				$end_d=date("Y-m-d",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTEND'])));
 				$end_t=date("H:i:s",strtotime($GMT,$ical->iCalDateToUnixTimestamp($event['DTEND'])));
 				$description=desc2json($event['DESCRIPTION']);
 				$req=$db->prepare('insert into events (UID,ressource, StartDate, StartTime, EndDate, EndTime, Title, Location, Description,Export) VALUES (?,?,?,?,?,?,?,?,?,?)');

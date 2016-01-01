@@ -37,6 +37,10 @@ function WordSum($word)
     return $cnt;
 }
 
+function date8601($date,$time){
+	return date('c',strtotime($date." ".$time));
+}
+
 //vos fonctions generiques ici
 
 ?>

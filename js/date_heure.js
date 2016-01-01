@@ -2,16 +2,29 @@ function compZero(nombre) {
   return nombre < 10 ? '0' + nombre : nombre;
 }
 
+function frenchDate(date,type){
+  jours = new Array('dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi');
+switch (type) {
+  case 'time':
+    return compZero(date.getHours()) + ':' + compZero(date.getMinutes());
+    break;
+    case 'date':
+    return date.getDate() + '/' + date.getMonth()+1 + '/' + date.getFullYear();
+    break;
+    case 'dateDay':
+    return  jours[date.getDay()]+new Array(8 - jours[date.getDay()].length+2).join(" \u00A0 ") + ' ' +("0" + date.getDate()).slice(-2) +"/"+ date.getMonth()+1;
+    break;
+    default:
+    return compZero(date.getHours()) + ':' + compZero(date.getMinutes()) +'<br/>' + date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+
+}
+
+}
+
 function date_heure() {
-  const infos = new Date();
-
+   infos = new Date();
   //Heure
-  document.getElementById('date_heure').innerHTML = compZero(infos.getHours()) + ':' + compZero(infos.getMinutes()) + ':' + compZero(infos.getSeconds());
-
-  //Date
-  const mois = new Array('01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12');
-  const jours = new Array('dimanche', 'lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi');
-  document.getElementById('date_heure').innerHTML += '<br>' + ' ' + infos.getDate() + '/' + mois[infos.getMonth()] + '/' + infos.getFullYear();
+  document.getElementById('date_heure').innerHTML =frenchDate(infos);
 }
 
 window.onload = function() {

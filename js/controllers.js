@@ -76,6 +76,29 @@ imrApp.controller('mainController', function($scope, Page) {
 
   $http.post('./php/agenda.php?action=getTasks').success(function(data, status, headers, config){
     $scope.tasks = data;
+    $scope.GetCours = function (task){
+      ressource=1492;
+      name=task.UID;
+      date="01-01-2016";
+      $http.post('./php/ade.php?action=getEventsByName&ressource='+ressource+"&name="+name+"&date="+date).success(function(data, status, headers, config){
+        if(data['id'])
+      {
+        $scope.task.title=data.Title;
+        $scope.task.deadline=new Date(data.StartDate);
+           console.log(data);
+      }
+      });
+    }
+
+
+    $scope.formatIt=function (data){
+      for(i=0;i<data.length;i++){
+        d=new Date(data[i].StartDate +" "+ data[i].StartTime )
+        data[i].Title=frenchDate(d,"dateDay")+ " à "+frenchDate(d,'time')+" " +data[i].Title;
+      }
+      console.log(data);
+      return data;
+    }
   });
 
   $scope.addTask = function (task){

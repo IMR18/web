@@ -74,7 +74,17 @@
 	<div class="form-group">
     <label for="Cours" class="col-sm-3 control-label" style="color:white;">Cours</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control" name="inputCours" ng-model="task.UID" placeholder="Cours" >
+			<angucomplete-alt
+			id="cours"
+			pause="100"
+			remote-url="./php/ade.php?action=getEventsByName&ressource=1492&name="
+			title-field="Title"
+			remote-url-response-formatter="formatIt"
+			input-class="form-control" name="inputCours"
+			minlength="1"
+			text-no-results="aucun resultat"
+			>
+</angucomplete-alt>
     </div>
   </div>
   <div class="form-group">
