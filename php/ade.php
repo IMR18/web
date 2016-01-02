@@ -57,10 +57,20 @@ switch($action){
 		$res['id']=false;
 		$name = isset($_GET["name"]) && !empty($_GET["name"]) ? $_GET["name"] : exit;
 		$ressource = isset($_GET["ressource"]) && !empty($_GET["ressource"]) ? $_GET["ressource"] : exit;
+	//	$ressource="('"+implode("','",explode(',',$ressource))+"')";
+		$ressource="('".implode("','",explode(',',$ressource))."')";
 		$date = isset($_GET["date"]) && !empty($_GET["date"]) ? $_GET["date"] : "1";
-		$req=$db->prepare("SELECT * FROM events WHERE ressource=? and Title LIKE \"%".$name."%\" and (StartDate=? or 1=?) ORDER BY StartDate,StartTime limit 25");
-		$req->execute(array($ressource,$date,$date));
+		$req=$db->prepare("SELECT *,count(*) as nbOccur FROM events WHERE ressource in ".$ressource." and Title LIKE \"%".$name."%\" and (StartDate=? or 1=?) group by UID ORDER BY StartDate,StartTime limit 25");
+		$req->execute(array($date,$date));
 		$res=$req->fetchAll(PDO::FETCH_ASSOC);
+		for($i=0;$i<sizeof($res);$i++){
+			if($res[$i]['ressource']==1488)
+				$res[$i]['group']=2;
+			if($res[$i]['ressource']==1492)
+				$res[$i]['group']=3;
+			if($res[$i]['nbOccur']>1)
+				$res[$i]['group']=1;
+		}
 		break;
 
 

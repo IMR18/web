@@ -17,7 +17,8 @@ $(document).ready(function() {
       speed: 450,
       transition: 'slideDown',
       amsl:target.attr('modal-amsl'),
-      modalColor :"#860",
+      modalColor :"orange",
+      opacity:0.6,
     });
   });
 });

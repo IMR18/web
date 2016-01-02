@@ -9,9 +9,11 @@ if(isset($_GET["action"])) {
 	$db=PDO();
 	switch($action){
 		case "getTasks":
-			$res=get_tasks($db);
+			$group = isset($_GET["group"]) && !empty($_GET["group"]) ? $_GET["group"] : 0;
+			$from = isset($_GET["from"]) && !empty($_GET["from"]) ? $_GET["from"] : 0;
+			$res=get_tasks($db,$group,$from);
 		break;
-		
+
 		case "addTask":
 			if(!is_object($p))
 				$res=array("addTask NO PARAMETERS");

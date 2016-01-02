@@ -1,11 +1,19 @@
-<button type="button" modal-target="addtaskform" class="btn btn-primary bPopupModal-src pull-right">Ajouter une tâche</button><br><br>
-
-<table class="table" >
+<select ng-model='filter.group' ng-change='getTasks()'>
+	<option value='1'>Les Deux</option>
+	<option value='2'>Info</option>
+	<option value='3'>RT</option>
+	<option value='0'>Toutes</option>
+</select>
+<button type="button" class="btn btn-info" ng-click="getTasks()">Actualiser</button>
+<button type="button" class="btn" ng-class="filter.from=='1970-1-1'? 'btn-danger' : 'btn-info' " ng-click="oldEvents()">{{filter.oldEvents}}</button>
+<button type="button" modal-target="addtaskform" class="btn btn-primary bPopupModal-src pull-right">Ajouter une tâche</button><br/><br/>
+<table class="table"   >
 	<thead>
 		<tr class="active">
 			<td class="col-md-2">Echéance</td>
 			<td class="col-md-2">Date</td>
 			<td class="col-md-3">Titre</td>
+			<td class="col-md-3">groupe</td>
 			<td>Description</td>
 		</tr>
 	</thead>
@@ -14,13 +22,34 @@
 			<td>{{task.timeleft}}</td>
 			<td>{{task.deadline}}</td>
 			<td>{{task.title}}</td>
+			<td>{{task.groupe}}</td>
 			<td>{{task.description}}</td>
 		</tr>
 	</tbody>
 </table>
-
-<form id="addtaskform" novalidate  class="bPopupModal popUp form-horizontal" >
-  	<h3 style="color:white;">Ajouter une tâche</h3>
+<form id="addtaskform" novalidate class="bPopupModal popUp form-horizontal" >
+  	<h3 style="color:white;text-align:center">Ajouter une tâche</h3>
+		<div class="form-group">
+			<label for="Cours" class="col-sm-3 control-label" style="color:white;">Cours</label>
+			<div class="col-sm-9">
+				<angucomplete-alt
+				id="cours"
+				placeholder="Cours"
+				pause="100"
+				remote-url="./php/ade.php?action=getEventsByName&ressource=1492,1488&name="
+				title-field="Title"
+				remote-url-response-formatter="formatIt"
+				input-class="form-control" name="inputCours"
+				minlength="1"
+				text-no-results="aucun resultat"
+				selected-object="coursSelected"
+				text-searching="Recherche en cours ..."
+				match-class="highlight"
+				>
+	</angucomplete-alt>
+	<input type="hidden" ng-model='task.UID'/>
+			</div>
+		</div>
   <div class="form-group">
     <label for="titre" class="col-sm-3 control-label" style="color:white;">Titre</label>
     <div class="col-sm-9">
@@ -30,7 +59,7 @@
   <div class="form-group">
     <label for="description" class="col-sm-3 control-label" style="color:white;">Description</label>
     <div class="col-sm-9">
-      <input type="text" class="form-control" name="inputDescription" ng-model="task.description" placeholder="Description de la tâche" required>
+      <textarea class="form-control" name="inputDescription" ng-model="task.description" rows="4" placeholder="Description de la tâche" required></textarea>
     </div>
   </div>
 	<div class="form-group">
@@ -40,17 +69,14 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="niveau" class="col-sm-3 control-label" style="color:white;" >Niveau de travail</label>
+		<label for="niveau" class="col-sm-3 control-label" style="color:white;" >Importance</label>
 		<div class="col-sm-9">
 			<div class="btn-group">
-				<label class="btn btn-default active">
-					<input type="radio" name="inputNiveau" value="1" ng-model="task.worklevel" 	required/> Faible
+				<label class="btn btn-default col-sm-4 btn-success" ng-model="task.worklevel" uib-btn-radio="1"> Faible
 				</label>
-				<label class="btn btn-default">
-					<input type="radio" name="inputNiveau" value="2" ng-model="task.worklevel" /> Moyen
+				<label class="btn btn-default col-sm-4 btn-warning" ng-model="task.worklevel" uib-btn-radio="2"> Moyen
 				</label>
-				<label class="btn btn-default">
-					<input type="radio" name="inputNiveau" value="3" ng-model="task.worklevel" /> Important
+				<label class="btn btn-default col-sm-4 btn-danger" ng-model="task.worklevel" uib-btn-radio="3"> important
 				</label>
 			</div>
 		</div>
@@ -58,38 +84,19 @@
 	<div class="form-group">
 		<label for="group" class="col-sm-3 control-label" style="color:white;">Groupe(s)</label>
 		<div class="col-sm-9">
-			<div class="btn-group">
-				<label class="btn btn-default active">
-					<input type="radio" name="inputGroup" ng-model="task.group" value="1" checked="checked" required/> Les deux
+			<div class="btn-group " >
+				<label class="btn btn-default col-sm-4" ng-model="task.group" uib-btn-radio="1"> Les deux
 				</label>
-				<label class="btn btn-default">
-					<input type="radio" name="inputGroup" ng-model="task.group" value="2" /> Info
+				<label class="btn btn-default col-sm-4 btn-info" ng-model="task.group" uib-btn-radio="2"> Info
 				</label>
-				<label class="btn btn-default">
-					<input type="radio" name="inputGroup" ng-model="task.group" value="3" /> RT
+				<label class="btn btn-default col-sm-4 btn-warning" ng-model="task.group" uib-btn-radio="3"> RT
 				</label>
 			</div>
 		</div>
 	</div>
-	<div class="form-group">
-    <label for="Cours" class="col-sm-3 control-label" style="color:white;">Cours</label>
-    <div class="col-sm-9">
-			<angucomplete-alt
-			id="cours"
-			pause="100"
-			remote-url="./php/ade.php?action=getEventsByName&ressource=1492&name="
-			title-field="Title"
-			remote-url-response-formatter="formatIt"
-			input-class="form-control" name="inputCours"
-			minlength="1"
-			text-no-results="aucun resultat"
-			>
-</angucomplete-alt>
-    </div>
-  </div>
   <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-10">
-      <button name="addtask" type="submit" ng-click="addTask(task)" class="btn btn-primary">Ajouter</button>
+    <div class="col-sm-offset-3 col-sm-9">
+      <button name="addtask" type="submit" ng-click="addTask(task)" class="btn col-sm-12 btn-primary">Ajouter</button>
     </div>
   </div>
   </form>

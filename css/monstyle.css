@@ -14,14 +14,37 @@ display: none;
 }
 
 .popUp{
-	padding:40px 20px;
+  padding: 0 20px 20px 0;
   background-image:linear-gradient(#555, #000);
   border-radius: 20px;
-  box-shadow: 0 0 35px 15px #999;
+  box-shadow: 0 0 25px 10px #999;
 }
 .innerLink {
   cursor: pointer;
 }
+
+.animate-show,
+.animate-hide {
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -ms-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition:all linear 1s;
+}
+
+.animate-show.ng-hide-remove,
+.animate-hide.ng-hide-add.ng-hide-add-active {
+  opacity: 0;
+  display: block !important;
+}
+
+.animate-hide.ng-hide-add,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  opacity: 1;
+  display: block !important;
+}
+
+
 
 @keyframes date_heure {
   from { color: #161616; }
@@ -122,16 +145,20 @@ form p{
 
 .highlight{
 	color:blue;
+  font-weight: 700;
 }
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
 .angucomplete-dropdown {
     position: absolute;
     background-color: white;
     width:95%;
     z-index: 99999;
-    overflow-y: auto;
-    max-height: 150px; // your preference
+    overflow-y: scroll;
+    max-height: 250px; // your preference
     text-align: left !important;
+    border:1px solid #333;
+    box-shadow: 0 15px 15px 5px #333;
 }
 
 

@@ -61,57 +61,64 @@ imrApp.controller('mainController', function($scope, Page) {
     });
   });
 
-  $scope.addTask = function (task){
-    $http.post('./php/agenda.php?action=addTask',task).success(function(data, status, headers, config){
-      msg="Erreur lors de l'ajout " + task.title;
-      if(data[0]){
-        msg=task.title+" a été ajouté avec succès";
-      }
-      alert(msg);
-    });
-  }
 })
 .controller('agendaController', function($scope, $http, $route, Page) {
   Page.setTitle("Agenda");
-
-  $http.post('./php/agenda.php?action=getTasks').success(function(data, status, headers, config){
+  $scope.task={};
+  $scope.filter={};
+  $scope.filter.group='0';
+  $scope.filter.from='';
+  $scope.filter.oldEvents="Afficher Tâches passées";
+$scope.getTasks=function(){
+  $http.post('./php/agenda.php?action=getTasks&group='+$scope.filter.group+"&from="+$scope.filter.from).success(function(data, status, headers, config) {
     $scope.tasks = data;
-    $scope.GetCours = function (task){
-      ressource=1492;
-      name=task.UID;
-      date="01-01-2016";
-      $http.post('./php/ade.php?action=getEventsByName&ressource='+ressource+"&name="+name+"&date="+date).success(function(data, status, headers, config){
-        if(data['id'])
-      {
-        $scope.task.title=data.Title;
-        $scope.task.deadline=new Date(data.StartDate);
-           console.log(data);
-      }
-      });
-    }
-
-
-    $scope.formatIt=function (data){
-      for(i=0;i<data.length;i++){
-        d=new Date(data[i].StartDate +" "+ data[i].StartTime )
-        data[i].Title=frenchDate(d,"dateDay")+ " à "+frenchDate(d,'time')+" " +data[i].Title;
-      }
-      console.log(data);
-      return data;
-    }
   });
+}
 
-  $scope.addTask = function (task){
-    console.log(task);
-    $http.post('./php/agenda.php?action=addTask',task).success(function(data, status, headers, config){
-      msg="Erreur lors de l'ajout " + task.title;
-      if(data[0]){
-        msg=task.title+" a été ajouté avec succès";
-        $route.reload();
+
+$scope.oldEvents=function(){
+  $scope.filter.oldEvents=$scope.filter.oldEvents=="Afficher Tâches passées"?"Masquer les Tâches passées":"Afficher Tâches passées";
+  d=$scope.filter.from=='1970-1-1'?new Date():new Date('1-1-1970');
+  $scope.filter.from=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+  $scope.getTasks();
+}
+
+
+    $scope.formatIt = function(data) {
+      for (i = 0; i < data.length; i++) {
+        d = new Date(data[i].StartDate + " " + data[i].StartTime)
+        data[i].name=data[i].Title;
+        data[i].Title = frenchDate(d, "dateDay") + " à " + frenchDate(d, 'time') + " " + data[i].Title;
       }
-      alert(msg);
+      console.log()
+      return data;
+    };
+
+  $scope.coursSelected = function(task) {
+    if(task){
+      task=task.originalObject;
+      $scope.task.title=task.name+" - ";
+      $scope.task.deadline=new Date(task.StartDate);
+      $scope.task.group=task.group;
+      $scope.task.UID=task.UID;
+      console.log(task);
+
+    }
+
+  };
+
+  $scope.addTask = function(task) {
+    console.log(task);
+    $http.post('./php/agenda.php?action=addTask', task).success(function(data, status, headers, config) {
+      msg = "Erreur lors de l'ajout " + task.title;
+      if (data[0]) {
+        msg = task.title + " a été ajouté avec succès";
+        $("#addtaskform").bPopup().close();
+        $scope.getTasks();
+      }
     });
-  }
+  };
+  $scope.getTasks();
 })
 
 .controller('croissantController', function($scope, Page) {
