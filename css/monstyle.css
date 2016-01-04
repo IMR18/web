@@ -161,15 +161,6 @@ form p{
     box-shadow: 0 15px 15px 5px #333;
 }
 
-
-
-
-
-
-
-
-
-
 /* ---------------------------- CHATBOX ---------------------------*/
 
 #chatbox {
@@ -260,6 +251,7 @@ form p{
   background-color: white;
   border-left: 2px solid #161616;
   border-right: 2px solid #161616;
+  text-align: center;
 }
 #chatboxInput {
   width: 65%;
