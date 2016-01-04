@@ -78,7 +78,7 @@ $scope.getTasks=function(){
 
 $scope.oldEvents=function(){
   $scope.filter.oldEvents=$scope.filter.oldEvents=="Afficher Tâches passées"?"Masquer les Tâches passées":"Afficher Tâches passées";
-  d=$scope.filter.from=='1970-1-1'?new Date():new Date('1-1-1970');
+  d=$scope.filter.from=='1970-1-1'?new Date():new Date('January 1, 1970 11:13:00');
   $scope.filter.from=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
   $scope.getTasks();
 }
