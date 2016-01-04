@@ -5,12 +5,26 @@ $(document).ready(function() {
     return v.toString(16);
   });
 
+  ref.child("users").child(UUID).set("on");
+  ref.child("users").child(UUID).onDisconnect().remove();
+
   var isChatboxOpen = false;
   var lastTimestamp = 0;
   var unreadMessages = 0;
   var newMessage = false;
+  var usersNumber = 0;
 
-  ref.on("child_added", function(snapshot) {
+  ref.child("users").on("child_added", function () {
+      usersNumber++;
+      $("#chatboxInput").attr("placeholder", usersNumber + " utilisateurs en ligne");
+  });
+
+  ref.child("users").on("child_removed", function () {
+      usersNumber--;
+      $("#chatboxInput").attr("placeholder", usersNumber + " utilisateurs en ligne");
+  });
+
+  ref.child("messages").on("child_added", function(snapshot) {
     var data = snapshot.val();
 
     if (lastTimestamp == null || (data.timestamp - lastTimestamp) > 1000*60*5) {
@@ -81,7 +95,7 @@ $(document).ready(function() {
     e.preventDefault();
     var msg = $("#chatboxInput").val();
     if (msg.length) {
-      ref.push({uuid: UUID, message: msg, timestamp: Firebase.ServerValue.TIMESTAMP});
+      ref.child("messages").push({uuid: UUID, message: msg, timestamp: Firebase.ServerValue.TIMESTAMP});
     }
     $("#chatboxInput").val("");
   });
