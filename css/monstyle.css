@@ -383,33 +383,3 @@ form h3 {
 }
 
 /* ----------------------------- MEDIA ----------------------------*/
-
-@media all and (max-width: 1200px){
-	.podium{
-		min-height: 700px;
-	}
-}
-
-@media all and (max-width:1000px){
-	.podium{
-		min-height: 550px;
-	}
-}
-
-@media all and (max-width: 700px){
-	.podium{
-		min-height: 450px;
-	}
-}
-
-@media all and (max-width: 480px){
-	.podium{
-		min-height: 300px;
-	}
-}
-
-@media all and (max-width: 350px){
-	.podium{
-		min-height: 220px;
-	}
-}
