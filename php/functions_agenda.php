@@ -21,8 +21,10 @@ function get_tasks($db,$group,$from){
 						$timeLeft = $timeLeft." et ";
 					}
 				}
+				if($interval->format('%R%m') == 0){
 			 	switch ($interval->format('%r%d')) {
 			 		case '0':
+
 			 			$jours="Aujourd'hui";
 			 		break;
 			 		case '1':
@@ -35,6 +37,13 @@ function get_tasks($db,$group,$from){
 					$jours="%d jours";
 			 		break;
 				}
+			}
+
+				else {
+					$jours="%d jours";
+				}
+				if($interval->format('%d') == 0)
+				$jours="";
 					$timeLeft = $timeLeft.$interval->format($jours);
 
 				if ($interval->format('%r') == '-' && $interval->format('%d')!=1) {
