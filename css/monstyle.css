@@ -82,7 +82,7 @@ display: none;
   background-repeat: no-repeat;*/
 }
 
-.mac{
+#mac{
   width:50%;
   display: inline-block;
   text-align: center;
@@ -90,21 +90,21 @@ display: none;
   margin-bottom: 5%;
 }
 
-form{
+#form_mac{
   width:100%;
   text-align: center;
 }
 
-form input{
+#form_mac input{
   text-align: center;
   height:50px;
 }
 
-form img{
+#form_mac img{
   width:35%;
 }
 
-form p{
+#form_mac p{
   font-size:40px;
   display: inline-block;
   font-family: 'Aladin', cursive;
