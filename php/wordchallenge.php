@@ -9,13 +9,10 @@ if(isset($_GET['action']))
 		{
 		case 'getWord':
 			$word=searchForCurrentWord();
-			
-			if($word===false) // No current word
-				$res=array('error'=>'No word left in database');
-			elseif($word===true) // Database failure
-				$res=array('error'=>'DB Failure');
-			else
-				$res=array('word'=>$word); // No sanity check as words are added by administrators.
+			$word[0]=ucfirst($word[0]);
+			$word[2]=ucfirst($word[2]);
+			$word[4]=ucfirst($word[4]);
+			$res=array('word'=>$word[0],'level'=>$word[1],'word1'=>$word[2],'level1'=>$word[3],'word2'=>$word[4],'level2'=>$word[5]); // No sanity check as words are added by administrators.
 		break;
 		case 'getTop3':
 		

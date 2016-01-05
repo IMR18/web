@@ -125,7 +125,15 @@ $scope.oldEvents=function(){
   Page.setTitle("Croissant");
 })
 
-.controller('wordchallengeController', function($scope, Page) {
+.controller('wordchallengeController', function($scope, $http, Page) {
   Page.setTitle("Mot-à-caler");
-  $scope.mot = "C'est pas un mot mais osef";
+  $http.post('./php/wordchallenge.php?action=getWord').success(function(data, status, headers, config){
+    $scope.mot=data["word"];
+    $scope.level=data["level"];
+    $scope.mot1=data["word1"];
+    $scope.level1=data["level1"];
+    $scope.mot2=data["word2"];
+    $scope.level2=data["level2"];
+  });
+
 });
