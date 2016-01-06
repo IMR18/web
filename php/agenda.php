@@ -15,10 +15,11 @@ if(isset($_GET["action"])) {
 		break;
 
 		case "addTask":
-			if(!is_object($p))
-				$res=array("addTask NO PARAMETERS");
+			if(!isset($p->title))
+				$res=array('status'=>false,'msg'=>"NO PARAMETERS");
 			else
-				$res=array(add_task($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->group),issetor($p->UID)));
+				$res=array('status'=> add_task($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->group),issetor($p->UID))
+									,'msg'=>"$p->title est ajouté");
 		break;
 	}
 

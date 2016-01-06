@@ -110,12 +110,16 @@ $scope.oldEvents=function(){
   $scope.addTask = function(task) {
     console.log(task);
     $http.post('./php/agenda.php?action=addTask', task).success(function(data, status, headers, config) {
-      msg = "Erreur lors de l'ajout " + task.title;
-      if (data[0]) {
-        msg = task.title + " a été ajouté avec succès";
+      if (data['status']) {
+        $scope.task={};
         $("#addtaskform").bPopup().close();
         $scope.getTasks();
       }
+      $("#infoPopUp").html("<span class='popover-title'>" + data["msg"] + "</span>")
+      $("#infoPopUp").bPopup({
+        autoClose: 2000,
+        modalColor :data['status']?"orange":"red",
+      });
     });
   };
   $scope.getTasks();

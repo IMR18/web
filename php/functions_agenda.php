@@ -7,6 +7,9 @@ function get_tasks($db,$group,$from){
 	$res=$req->fetchAll(PDO::FETCH_ASSOC);
 
 	foreach ($res as $key=>$task){
+		foreach($task as $key2=>$row){
+		$res[$key][$key2]=html_entity_decode($row);
+		}
 		$deadlineDate = new DateTime($task['deadline']);
 		$now = new DateTime("today");
 		$interval = $now->diff($deadlineDate);
@@ -58,14 +61,17 @@ function get_tasks($db,$group,$from){
 }
 
 function couleurNiveau($num){
-	if($num==1){
+	switch ($num) {
+		case 3:
+			$retour = "danger";
+			break;
+		case 2:
+			$retour = "warning";
+			break;
+
+		default:
 		$retour = "success";
-	}
-	if($num==2){
-		$retour = "warning";
-	}
-	if($num==3){
-		$retour = "danger";
+			break;
 	}
 
 	return $retour;
