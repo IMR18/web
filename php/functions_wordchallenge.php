@@ -1,8 +1,6 @@
 <?php
 require_once("functions.php");
 
-
-
 function searchForCurrentWord()
 	{
 	$db=PDO();
@@ -17,6 +15,21 @@ function searchForCurrentWord()
 	$reponse->closeCursor();
 	return $tab;
 	}
+ 
+ function searchParamsForTopScore(){
+ 		$db=PDO();
+ 		$tab = array();
+
+		$reponse=$db->query('SELECT prenom,score,nb_mots FROM users ORDER BY id ASC');
+		while($donnees=$reponse->fetch())
+		{
+			array_push($tab,$donnees['prenom']);
+			array_push($tab,$donnees['score']);
+			array_push($tab,$donnees['nb_mots']);
+		}
+		$reponse->closeCursor();
+		return $tab;
+ }
 
 function addWordToDB($word)
 	{
@@ -28,3 +41,4 @@ function addWordToDB($word)
 	else
 		return false;
 	}
+

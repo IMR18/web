@@ -136,4 +136,17 @@ $scope.oldEvents=function(){
     $scope.level2=data["level2"];
   });
 
+  $http.post('./php/wordchallenge.php?action=getTopScore').success(function(data, status, headers, config){
+    $scope.ligne = function(data) {
+      for (i = 0; i < data.length; i+=5) {
+        data[i].rank='0';
+        data[i].prenom=data[i+1];
+        data[i].score=data[i+2];
+        data[i].nb_mots=data[i+3];
+        data[i].ratio='0';
+      }
+      return data;
+    };
+  });
+
 });
