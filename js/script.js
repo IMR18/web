@@ -10,6 +10,19 @@ imrApp.factory('Page', function(){
 $(document).ready(function() {
   $("#shortcuts").draggable();
 
+  $("body").on('click','#datepicker',function(){
+    $('#datepicker').datepicker({
+        format: "yyyy-mm-dd",
+        todayBtn: "linked",
+        autoclose: true,
+        language: "fr",
+        daysOfWeekDisabled: "0,6",
+        calendarWeeks: true,
+        todayHighlight: true
+    });
+    $('#datepicker').datepicker('show');
+  });
+
   $("body").on('click','.bPopupModal-src',function(){
     target=$(this);
     $('#'+target.attr('modal-target')).bPopup({

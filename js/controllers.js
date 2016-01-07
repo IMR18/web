@@ -98,18 +98,44 @@ $scope.oldEvents=function(){
     if(task){
       task=task.originalObject;
       $scope.task.title=task.name+" - ";
-      $scope.task.deadline=new Date(task.StartDate);
+      $scope.task.deadline=new Date(task.StartDate+'T13:15:00.000+10:00');
+      $scope.task.deadlinePicker=$scope.task.deadline.getFullYear()+"-"+("0" + ($scope.task.deadline.getMonth() + 1)).slice(-2)+"-"+("0" + $scope.task.deadline.getDate()).slice(-2);
+
       $scope.task.group=task.group;
       $scope.task.UID=task.UID;
-      console.log(task);
 
     }
 
   };
 
+    $("body").on('click','#datepicker',function(){
+      $('#datepicker').datepicker({
+          format: "yyyy-mm-dd",
+          todayBtn: "linked",
+          autoclose: true,
+          language: "fr",
+          daysOfWeekDisabled: "0,6",
+          calendarWeeks: true,
+          todayHighlight: true
+      });
+      $('#datepicker').datepicker('show');
+    });
+
+    $("body").on('change','#datepicker',function(){
+      $scope.$apply(function () {
+          $scope.task.deadline=$('#datepicker').val();
+      });
+    });
+
+
   $scope.addTask = function(task) {
-    console.log(task);
-    $http.post('./php/agenda.php?action=addTask', task).success(function(data, status, headers, config) {
+    local_task=task;
+  if(typeof(local_task.deadline)!='undefined'){
+   if(local_task.deadline.length==10){
+     local_task.deadline=new Date(local_task.deadline+'T13:15:00.000+10:00');
+    }
+    }
+    $http.post('./php/agenda.php?action=addTask', local_task).success(function(data, status, headers, config) {
       if (data['status']) {
         $scope.task={};
         $("#addtaskform").bPopup().close();

@@ -14,7 +14,7 @@ display: none;
 }
 
 .popUp{
-  padding: 0 20px 20px 0;
+  padding: 20px;
   background-image:linear-gradient(#555, #000);
   border-radius: 20px;
   box-shadow: 0 0 25px 10px #999;
@@ -275,6 +275,21 @@ form h3 {
     text-align: left !important;
     border:1px solid #333;
     box-shadow: 0 15px 15px 5px #333;
+}
+
+.grp_icon{
+  background-size: 30px;
+  background-repeat: no-repeat;
+   background-position: center;
+}
+.grp_info{
+  background-image: url('../img/grp_info.png');
+}
+.grp_RT{
+  background-image: url('../img/grp_rt.png');
+}
+.grp_imr{
+  background-image: url('../img/grp_imr.png');
 }
 
 /* ---------------------------- CHATBOX ---------------------------*/

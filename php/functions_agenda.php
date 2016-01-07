@@ -56,10 +56,26 @@ function get_tasks($db,$group,$from){
 			$res[$key]['timeleft']=$timeLeft;
 			$res[$key]['deadline']=$deadline;
 			$res[$key]['worklevel']=couleurNiveau($res[$key]['worklevel']);
+			$res[$key]['groupe']=groupe($res[$key]['groupe']);
 	}
 	return $res;
 }
 
+function groupe($num){
+	switch ($num) {
+		case 3:
+			$retour = "grp_RT";
+			break;
+		case 2:
+			$retour = "grp_info";
+			break;
+
+		default:
+		$retour = "grp_imr";
+			break;
+	}
+	return $retour;
+}
 function couleurNiveau($num){
 	switch ($num) {
 		case 3:

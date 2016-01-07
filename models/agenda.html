@@ -10,19 +10,19 @@
 <table class="table"   >
 	<thead>
 		<tr class="active">
-			<td class="col-md-2">Echéance</td>
-			<td class="col-md-2">Date</td>
+			<td class="col-md-1">Groupe</td>
 			<td class="col-md-3">Titre</td>
-			<td class="col-md-3">groupe</td>
+			<td class="col-md-1">Echéance</td>
+			<td class="col-md-1">Date</td>
 			<td>Description</td>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="task in tasks" class="{{task.worklevel}}">
+			<td class="{{task.groupe}} grp_icon"></td>
+			<td>{{task.title}}</td>
 			<td>{{task.timeleft}}</td>
 			<td>{{task.deadline}}</td>
-			<td>{{task.title}}</td>
-			<td>{{task.groupe}}</td>
 			<td>{{task.description}}</td>
 		</tr>
 	</tbody>
@@ -65,7 +65,7 @@
 	<div class="form-group">
 		<label for="echeance" class="col-sm-3 control-label" style="color:white;">Echéance</label>
 		<div class="col-sm-9">
-			<input type="date" class="form-control" name="inputDate" ng-model="task.deadline" required>
+			<input type="text" class="form-control" id="datepicker" ng-model="task.deadlinePicker" name="inputDate" autocomplete="off"   required>
 		</div>
 	</div>
 	<div class="form-group">
