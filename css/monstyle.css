@@ -75,6 +75,11 @@ display: none;
   min-height: 350px;
   position:relative;
   display: inline-block;
+  background:url("../img/mac/superfeu.jpg")no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   /*
   background: url("../img/podium.png");
   background-size: 100% 60%;
@@ -98,6 +103,7 @@ display: none;
 #form_mac input{
   text-align: center;
   height:50px;
+  font-size:40px;
 }
 
 #form_mac img{
