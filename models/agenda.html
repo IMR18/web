@@ -14,16 +14,21 @@
 			<td class="col-md-3">Titre</td>
 			<td class="col-md-1">Echéance</td>
 			<td class="col-md-1">Date</td>
-			<td>Description</td>
+			<td class="col-md-5">Description</td>
+			<td class="col-md-1"></td>
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="task in tasks" class="{{task.worklevel}}">
-			<td class="{{task.groupe}} grp_icon"></td>
+		<tr ng-repeat="task in tasks" ng-class="{danger : task.worklevel == 3,warning : task.worklevel == 2,success : task.worklevel == 1}" >
+			<td ng-class="{grp_RT	 : task.groupe == 3,grp_info : task.groupe == 2,grp_imr : task.groupe == 1}" class="grp_icon"></td>
 			<td>{{task.title}}</td>
 			<td>{{task.timeleft}}</td>
 			<td>{{task.deadline}}</td>
 			<td>{{task.description}}</td>
+			<td class="text-center">
+				<i ng-click="editTask($index)" class="btn btn-info-outline glyphicon glyphicon-edit" style="margin:5px 0;"></i>
+				<i ng-click="deleteTask($index)" class="btn btn-danger-outline glyphicon glyphicon-remove "></i>
+			</td>
 		</tr>
 	</tbody>
 </table>
@@ -85,18 +90,18 @@
 		<label for="group" class="col-sm-3 control-label" style="color:white;">Groupe(s)</label>
 		<div class="col-sm-9">
 			<div class="btn-group " >
-				<label class="btn btn-default col-sm-4" ng-model="task.group" uib-btn-radio="1"> Les deux
+				<label class="btn btn-default col-sm-4" ng-model="task.groupe" uib-btn-radio="1"> Les deux
 				</label>
-				<label class="btn btn-default col-sm-4 btn-info" ng-model="task.group" uib-btn-radio="2"> Info
+				<label class="btn btn-default col-sm-4 btn-info" ng-model="task.groupe" uib-btn-radio="2"> Info
 				</label>
-				<label class="btn btn-default col-sm-4 btn-warning" ng-model="task.group" uib-btn-radio="3"> RT
+				<label class="btn btn-default col-sm-4 btn-warning" ng-model="task.groupe" uib-btn-radio="3"> RT
 				</label>
 			</div>
 		</div>
 	</div>
   <div class="form-group">
     <div class="col-sm-offset-3 col-sm-9">
-      <button name="addtask" type="submit" ng-click="addTask(task)" class="btn col-sm-12 btn-primary">Ajouter</button>
+      <button name="addtask" type="submit" id="submitTask" ng-click="addTask(task)" class="btn col-sm-12 btn-primary">Ajouter</button>
     </div>
   </div>
   </form>

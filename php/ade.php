@@ -65,11 +65,11 @@ switch($action){
 		$res=$req->fetchAll(PDO::FETCH_ASSOC);
 		for($i=0;$i<sizeof($res);$i++){
 			if($res[$i]['ressource']==1488)
-				$res[$i]['group']=2;
+				$res[$i]['groupe']=2;
 			if($res[$i]['ressource']==1492)
-				$res[$i]['group']=3;
+				$res[$i]['groupe']=3;
 			if($res[$i]['nbOccur']>1)
-				$res[$i]['group']=1;
+				$res[$i]['groupe']=1;
 		}
 		break;
 

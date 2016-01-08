@@ -74,10 +74,10 @@ function groupe($num){
 		$retour = "grp_imr";
 			break;
 	}
-	return $retour;
+	return $num;
 }
 function couleurNiveau($num){
-	switch ($num) {
+	/*switch ($num) {
 		case 3:
 			$retour = "danger";
 			break;
@@ -90,7 +90,8 @@ function couleurNiveau($num){
 			break;
 	}
 
-	return $retour;
+	return $retour;*/
+	return $num;
 }
 
 function add_task($db,$title,$description,$deadline,$worklevel,$group,$UID){
@@ -104,5 +105,24 @@ function add_task($db,$title,$description,$deadline,$worklevel,$group,$UID){
 	$req=$db->prepare("INSERT INTO tasks (title,description,deadline,worklevel,groupe,ADE_UID) VALUES (?,?,?,?,?,?)");
 
 	return $req->execute(array($title,$description,$deadline,$worklevel,$group,$UID));
+}
+function editTask($db,$title,$description,$deadline,$worklevel,$group,$UID,$id){
+	$title=htmlentities($title);
+	$description=htmlentities($description);
+	$deadline=htmlentities($deadline);
+	$worklevel=htmlentities($worklevel);
+	$group=htmlentities($group);
+	$UID=htmlentities($UID);
+
+	$req=$db->prepare("update tasks set title=?,description=?,deadline=?,worklevel=?,groupe=?,ADE_UID=? where id=".$id);
+
+	return $req->execute(array($title,$description,$deadline,$worklevel,$group,$UID));
+}
+
+function deleteTask($db,$id){
+
+	$req=$db->prepare("delete from tasks where id = ?");
+
+	return $req->execute(array($id));
 }
 ?>

@@ -18,9 +18,25 @@ if(isset($_GET["action"])) {
 			if(!isset($p->title))
 				$res=array('status'=>false,'msg'=>"NO PARAMETERS");
 			else
-				$res=array('status'=> add_task($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->group),issetor($p->UID))
+				$res=array('status'=> add_task($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->groupe),issetor($p->UID))
 									,'msg'=>"$p->title est ajouté");
 		break;
+		case "deleteTask":
+			if(!isset($p->id))
+				$res=array('status'=>false,'msg'=>"NO PARAMETERS");
+			else
+				$res=array('status'=> deleteTask($db,issetor($p->id))	,'msg'=>"$p->title est supprimée");
+		break;
+
+		case "editTask":
+			if(!isset($p->id))
+				$res=array('status'=>false,'msg'=>"NO PARAMETERS");
+			else
+				$res=array('status'=> editTask($db,issetor($p->title),issetor($p->description),issetor($p->deadline),issetor($p->worklevel),issetor($p->groupe),issetor($p->UID),$p->id)
+										,'msg'=>"$p->title est modifiée");
+		break;
+		default:
+		$res=array("ACTION NOT FOUND");
 	}
 
 	echo json_encode($res);

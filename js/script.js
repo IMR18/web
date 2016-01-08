@@ -7,6 +7,11 @@ imrApp.factory('Page', function(){
   };
 });
 
+function sqltojsDate(isoFormatDateString){
+  var dateParts = isoFormatDateString.split("-");
+  return new Date(dateParts[2], dateParts[1] - 1 , dateParts[0]);
+}
+
 $(document).ready(function() {
   $("#shortcuts").draggable();
 
@@ -34,6 +39,14 @@ $(document).ready(function() {
       opacity:0.6,
     });
   });
+
+
+  $("body").on('click','.closeConfirm',function(){
+    target=$(this);
+    $("#"+target.attr('target')).bPopup().close();
+  });
+
+  
 });
 
 function displayMessage(message) {
