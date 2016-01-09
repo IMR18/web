@@ -230,25 +230,21 @@ $scope.deleteTask = function(index) {
 .controller('wordchallengeController', function($scope, $http, Page) {
   Page.setTitle("Mot-à-caler");
   $http.post('./php/wordchallenge.php?action=getWord').success(function(data, status, headers, config){
-    $scope.mot=data["word"];
-    $scope.level=data["level"];
-    $scope.mot1=data["word1"];
-    $scope.level1=data["level1"];
-    $scope.mot2=data["word2"];
-    $scope.level2=data["level2"];
+    $scope.mot=data[0];
+    $scope.level=data[1];
+    $scope.mot1=data[2];
+    $scope.level1=data[3];
+    $scope.mot2=data[4];
+    $scope.level2=data[5];
   });
 
   $http.post('./php/wordchallenge.php?action=getTopScore').success(function(data, status, headers, config){
-    $scope.ligne = function(data) {
-      for (i = 0; i < data.length; i+=5) {
-        data[i].rank='0';
-        data[i].prenom=data[i+1];
-        data[i].score=data[i+2];
-        data[i].nb_mots=data[i+3];
-        data[i].ratio='0';
-      }
-      return data;
-    };
+    $scope.topscore=data; 
   });
-
+ $http.post('./php/wordchallenge.php?action=getTop3').success(function(data, status, headers, config){
+    $scope.top1=data[0];
+    $scope.top2=data[1];
+    $scope.top3=data[2];
+ });
+ 
 });

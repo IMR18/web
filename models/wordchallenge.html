@@ -1,7 +1,7 @@
 <div class="podium">	
-	<span id="deux" class="photo_pod"><img class="img-circle" src="img/mac/visages/Zaïd.png" alt="..."/></span>
-	<span id="trois" class="photo_pod"><img class="img-circle" src="img/mac/visages/François.png" alt="..."/></span>
-	<span id="un" class="photo_pod"><img class="img-circle" src="img/mac/visages/Hugo.png" alt="..."/></span>
+	<span id="deux" class="photo_pod"><img class="img-circle" src="img/mac/visages/{{top2}}.png" alt="..."/></span>
+	<span id="trois" class="photo_pod"><img class="img-circle" src="img/mac/visages/{{top3}}.png" alt="..."/></span>
+	<span id="un" class="photo_pod"><img class="img-circle" src="img/mac/visages/{{top1}}.png" alt="..."/></span>
 	<img id="pod" src="img/mac/podium.png" alt="..."/>
 </div><!-- @whitespace
 
@@ -31,26 +31,12 @@
 		<th>Ratio</th>
 	</tr>
 	<!-- Fonction qui permettra de générer la liste des participants -->
-	<tr>
-		<td>{{ligne.rank}}</td><!-- classement -->
-		<td>{{ligne.prenom}}</td><!-- prénom -->
-		<td>{{ligne.score}}</td><!-- score -->
-		<td>{{ligne.nb_mots}}</td><!-- nb_mots -->
-		<td>{{ligne.ratio}}</td><!-- ratio = score/nb_mots -->
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>Hugo</td>
-		<td>30</td>
-		<td>6</td>
-		<td>5</td>
-	</tr>
-	<tr>
-		<td>1</td>
-		<td>Hugo</td>
-		<td>30</td>
-		<td>6</td>
-		<td>5</td>
+	<tr ng-repeat="donnees in topscore">
+		<td>{{donnees.rank}}</td><!-- classement -->
+	    <td>{{donnees.prenom}}</td><!-- prénom -->
+		<td>{{donnees.score}}</td><!-- score -->
+		<td>{{donnees.nb_mots}}</td><!-- nb_mots -->
+		<td>{{donnees.ratio}}</td><!-- ratio = score/nb_mots -->
 	</tr>
 	
 </tbody>
