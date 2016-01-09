@@ -5,7 +5,7 @@ function searchForCurrentWord()
 	{
 	$db=PDO();
 	$tab = array();
-	$reponse=$db->query('SELECT word,level FROM wordchallenge ORDER BY id ASC LIMIT 3');
+	$reponse=$db->query('SELECT word,level FROM wordchallenge WHERE iduser=0 ORDER BY id ASC LIMIT 3');
 
 	while($donnees=$reponse->fetch())
 		{
