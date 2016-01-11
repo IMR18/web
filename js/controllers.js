@@ -14,7 +14,7 @@ imrApp.controller('mainController', function($scope, Page) {
     $scope.events = data;
     $('#timeTable').weekCalendar({
       data: $scope.events,
-      date: new Date('2016-01-05T13:15:00.000+10:00'),
+      date: new Date(),
       minDate: new Date('2009-05-01T13:15:00.000+10:00'),
       maxDate: new Date('2019-05-20T13:15:00.000+10:00'),
       timeslotsPerHour: 2,
@@ -239,12 +239,12 @@ $scope.deleteTask = function(index) {
   });
 
   $http.post('./php/wordchallenge.php?action=getTopScore').success(function(data, status, headers, config){
-    $scope.topscore=data; 
+    $scope.topscore=data;
   });
  $http.post('./php/wordchallenge.php?action=getTop3').success(function(data, status, headers, config){
     $scope.top1=data[0];
     $scope.top2=data[1];
     $scope.top3=data[2];
  });
- 
+
 });
