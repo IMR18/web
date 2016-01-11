@@ -1,6 +1,12 @@
 // CONTROLLERS
 imrApp.controller('mainController', function($scope, Page) {
   $scope.Page = Page;
+  $scope.user={
+    connected:false,
+    nikeName:"",
+    img:'./img/users/mini/francois.png'
+  }
+  $scope.user.nikeName="Zaza35"
 })
 
 .controller('homeController', function($scope, Page) {
@@ -14,7 +20,7 @@ imrApp.controller('mainController', function($scope, Page) {
     $scope.events = data;
     $('#timeTable').weekCalendar({
       data: $scope.events,
-      date: new Date('2016-01-05T13:15:00.000+10:00'),
+      date: new Date(),
       minDate: new Date('2009-05-01T13:15:00.000+10:00'),
       maxDate: new Date('2019-05-20T13:15:00.000+10:00'),
       timeslotsPerHour: 2,
@@ -64,11 +70,13 @@ imrApp.controller('mainController', function($scope, Page) {
 })
 .controller('agendaController', function($scope, $http, $route, Page,$compile) {
   Page.setTitle("Agenda");
+
+
   $scope.task={};
   $scope.filter={};
   $scope.filter.group='0';
   $scope.filter.from='';
-  $scope.filter.oldEvents="Afficher Tâches passées";
+  $scope.filter.oldEvents="Afficher les tâches passées";
 $scope.getTasks=function(){
   $http.post('./php/agenda.php?action=getTasks&group='+$scope.filter.group+"&from="+$scope.filter.from).success(function(data, status, headers, config) {
     $scope.tasks = data;
@@ -148,7 +156,7 @@ $scope.oldEvents=function(){
       $("#infoPopUp").html("<span class='popover-title'>" + data["msg"] + "</span>");
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#200":"#220",
       });
     });
   };
@@ -166,7 +174,7 @@ $scope.deleteTask = function(index) {
   $("#infoPopUp").bPopup({
     modalClose:false,
     escClose:false,
-    modalColor :false?"orange":"red",
+    modalColor :false?"#000":"#200",
   });}
 
   $scope.deleteTaskConfirmed = function(index) {
@@ -179,7 +187,7 @@ $scope.deleteTask = function(index) {
       $("#infoPopUp").html("<div class='popUp text-center' style='color:white'><p>" + data["msg"] + "</p></div>")
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#000":"#200",
       });
     });
   };
@@ -187,7 +195,7 @@ $scope.deleteTask = function(index) {
     $("#addtaskform h3").html("Modifier La tâche <br/><h5>"+$scope.tasks[index].title+"</h5>");
     $("#addtaskform #submitTask").text("Mettre à jour");
     $("#addtaskform").bPopup({
-      modalColor :"blue",
+      modalColor :"#000",
       onOpen: function(){
             $scope.editMode=true;
             $scope.task=angular.copy($scope.tasks[index]);
@@ -216,7 +224,7 @@ $scope.deleteTask = function(index) {
       $("#infoPopUp").html("<span class='popover-title'>" + data["msg"] + "</span>")
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#220":"#200",
       });
     });
   };
@@ -230,25 +238,21 @@ $scope.deleteTask = function(index) {
 .controller('wordchallengeController', function($scope, $http, Page) {
   Page.setTitle("Mot-à-caler");
   $http.post('./php/wordchallenge.php?action=getWord').success(function(data, status, headers, config){
-    $scope.mot=data["word"];
-    $scope.level=data["level"];
-    $scope.mot1=data["word1"];
-    $scope.level1=data["level1"];
-    $scope.mot2=data["word2"];
-    $scope.level2=data["level2"];
+    $scope.mot=data[0];
+    $scope.level=data[1];
+    $scope.mot1=data[2];
+    $scope.level1=data[3];
+    $scope.mot2=data[4];
+    $scope.level2=data[5];
   });
 
   $http.post('./php/wordchallenge.php?action=getTopScore').success(function(data, status, headers, config){
-    $scope.ligne = function(data) {
-      for (i = 0; i < data.length; i+=5) {
-        data[i].rank='0';
-        data[i].prenom=data[i+1];
-        data[i].score=data[i+2];
-        data[i].nb_mots=data[i+3];
-        data[i].ratio='0';
-      }
-      return data;
-    };
+    $scope.topscore=data;
   });
+ $http.post('./php/wordchallenge.php?action=getTop3').success(function(data, status, headers, config){
+    $scope.top1=data[0];
+    $scope.top2=data[1];
+    $scope.top3=data[2];
+ });
 
 });

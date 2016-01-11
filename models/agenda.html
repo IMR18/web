@@ -7,15 +7,14 @@
 <button type="button" class="btn btn-info" ng-click="getTasks()">Actualiser</button>
 <button type="button" class="btn" ng-class="filter.from=='1970-1-1'? 'btn-danger' : 'btn-info' " ng-click="oldEvents()">{{filter.oldEvents}}</button>
 <button type="button" modal-target="addtaskform" class="btn btn-primary bPopupModal-src pull-right">Ajouter une tâche</button><br/><br/>
-<table class="table"   >
+<table class="table" >
 	<thead>
 		<tr class="active">
 			<td class="col-md-1">Groupe</td>
 			<td class="col-md-3">Titre</td>
 			<td class="col-md-1">Echéance</td>
 			<td class="col-md-1">Date</td>
-			<td class="col-md-5">Description</td>
-			<td class="col-md-1"></td>
+			<td class="col-md-6">Description</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -24,10 +23,12 @@
 			<td>{{task.title}}</td>
 			<td>{{task.timeleft}}</td>
 			<td>{{task.deadline}}</td>
-			<td>{{task.description}}</td>
-			<td class="text-center">
+			<td>
+			<div class="text-center" style="float:right;margin-left:10px">
 				<i ng-click="editTask($index)" class="btn btn-info-outline glyphicon glyphicon-edit" style="margin:5px 0;"></i>
 				<i ng-click="deleteTask($index)" class="btn btn-danger-outline glyphicon glyphicon-remove "></i>
+			</div>
+			{{task.description}}
 			</td>
 		</tr>
 	</tbody>
@@ -81,7 +82,7 @@
 				</label>
 				<label class="btn btn-default col-sm-4 btn-warning" ng-model="task.worklevel" uib-btn-radio="2"> Moyen
 				</label>
-				<label class="btn btn-default col-sm-4 btn-danger" ng-model="task.worklevel" uib-btn-radio="3"> important
+				<label class="btn btn-default col-sm-4 btn-danger" ng-model="task.worklevel" uib-btn-radio="3"> Important
 				</label>
 			</div>
 		</div>

@@ -12,6 +12,24 @@ function sqltojsDate(isoFormatDateString){
   return new Date(dateParts[2], dateParts[1] - 1 , dateParts[0]);
 }
 
+function showPassword() {
+
+    var key_attr = $('#key').attr('type');
+
+    if(key_attr != 'text') {
+
+        $('.checkbox').addClass('show');
+        $('#key').attr('type', 'text');
+
+    } else {
+
+        $('.checkbox').removeClass('show');
+        $('#key').attr('type', 'password');
+
+    }
+
+}
+
 $(document).ready(function() {
   $("#shortcuts").draggable();
 
@@ -35,7 +53,7 @@ $(document).ready(function() {
       speed: 450,
       transition: 'slideDown',
       amsl:target.attr('modal-amsl'),
-      modalColor :"orange",
+      modalColor :"#000",
       opacity:0.6,
     });
   });
@@ -46,7 +64,7 @@ $(document).ready(function() {
     $("#"+target.attr('target')).bPopup().close();
   });
 
-  
+
 });
 
 function displayMessage(message) {
