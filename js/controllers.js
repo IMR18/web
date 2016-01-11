@@ -1,6 +1,12 @@
 // CONTROLLERS
 imrApp.controller('mainController', function($scope, Page) {
   $scope.Page = Page;
+  $scope.user={
+    connected:false,
+    nikeName:"",
+    img:'./img/users/mini/francois.png'
+  }
+  $scope.user.nikeName="Zaza35"
 })
 
 .controller('homeController', function($scope, Page) {
@@ -14,7 +20,7 @@ imrApp.controller('mainController', function($scope, Page) {
     $scope.events = data;
     $('#timeTable').weekCalendar({
       data: $scope.events,
-      date: new Date('2016-01-05T13:15:00.000+10:00'),
+      date: new Date(),
       minDate: new Date('2009-05-01T13:15:00.000+10:00'),
       maxDate: new Date('2019-05-20T13:15:00.000+10:00'),
       timeslotsPerHour: 2,
@@ -64,6 +70,8 @@ imrApp.controller('mainController', function($scope, Page) {
 })
 .controller('agendaController', function($scope, $http, $route, Page,$compile) {
   Page.setTitle("Agenda");
+
+
   $scope.task={};
   $scope.filter={};
   $scope.filter.group='0';
@@ -148,7 +156,7 @@ $scope.oldEvents=function(){
       $("#infoPopUp").html("<span class='popover-title'>" + data["msg"] + "</span>");
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#200":"#220",
       });
     });
   };
@@ -166,7 +174,7 @@ $scope.deleteTask = function(index) {
   $("#infoPopUp").bPopup({
     modalClose:false,
     escClose:false,
-    modalColor :false?"orange":"red",
+    modalColor :false?"#000":"#200",
   });}
 
   $scope.deleteTaskConfirmed = function(index) {
@@ -179,7 +187,7 @@ $scope.deleteTask = function(index) {
       $("#infoPopUp").html("<div class='popUp text-center' style='color:white'><p>" + data["msg"] + "</p></div>")
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#000":"#200",
       });
     });
   };
@@ -187,7 +195,7 @@ $scope.deleteTask = function(index) {
     $("#addtaskform h3").html("Modifier La tâche <br/><h5>"+$scope.tasks[index].title+"</h5>");
     $("#addtaskform #submitTask").text("Mettre à jour");
     $("#addtaskform").bPopup({
-      modalColor :"blue",
+      modalColor :"#000",
       onOpen: function(){
             $scope.editMode=true;
             $scope.task=angular.copy($scope.tasks[index]);
@@ -216,7 +224,7 @@ $scope.deleteTask = function(index) {
       $("#infoPopUp").html("<span class='popover-title'>" + data["msg"] + "</span>")
       $("#infoPopUp").bPopup({
         autoClose: 2000,
-        modalColor :data['status']?"orange":"red",
+        modalColor :data['status']?"#220":"#200",
       });
     });
   };
@@ -239,12 +247,12 @@ $scope.deleteTask = function(index) {
   });
 
   $http.post('./php/wordchallenge.php?action=getTopScore').success(function(data, status, headers, config){
-    $scope.topscore=data; 
+    $scope.topscore=data;
   });
  $http.post('./php/wordchallenge.php?action=getTop3').success(function(data, status, headers, config){
     $scope.top1=data[0];
     $scope.top2=data[1];
     $scope.top3=data[2];
  });
- 
+
 });
