@@ -72,12 +72,6 @@
           <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
         </form>
 
-        <form class="navbar-form navbar-left" role="search" method="get" target="_blank" action="http://www.youtube.com/results">
-          <div class="form-group">
-            <input type="text" name="q" class="form-control" placeholder="Recherche Youtube">
-          </div>
-          <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        </form>
         <a  modal-target="shortcuts" modal-amsl="800" class="bPopupModal-src glyphicon glyphicon-menu-hamburger white btn-lg"  style="color:white" ></a>
 
         <ul class="nav navbar-nav navbar-right">
@@ -184,25 +178,25 @@
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
       <div class="modal-header">
-          <h2 class="modal-title">Bienvenue sur <span class="logo logo-inverse" >IMR18</span> <br/>Connectez vous</h2>
+          <h2 class="modal-title">Bienvenue sur <span class="logo logo-inverse" >IMR18</span> <br/>Connecte toi</h2>
       </div>
 	<div class="modal-body">
 
                 <form role="form" action="javascript:;" method="post" id="login-form" autocomplete="off">
                     <div class="form-group">
-                        <label for="email" class="sr-only">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="somebody@example.com">
+                        <label for="email" class="sr-only">Identifiant</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Identifiant">
                     </div>
                     <div class="form-group">
                         <label for="key" class="sr-only">Mot de passe</label>
-                        <input type="password" name="key" id="key" class="form-control" placeholder="Password">
+                        <input type="password" name="key" id="key" class="form-control" placeholder="Mot de passe">
                     </div>
                     <div class="checkbox">
                         <span class="character-checkbox" onclick="showPassword()"></span>
-                        <span class="label">Afficher Le mot de passe</span>
+                        <span class="label">Afficher le mot de passe</span>
                     </div>
 
-                    <input type="submit" id="btn-login" onclick="$('#loginModal').modal('hide');" ng-click="user.connected=true;" class="btn btn-custom btn-lg btn-block" value="Log in">
+                    <input type="submit" id="btn-login" onclick="$('#loginModal').modal('hide');" ng-click="user.connected=true;" class="btn btn-custom btn-lg btn-block" value="Se connecter">
                 </form>
                 <a href="javascript:;" class="forget" data-toggle="modal" data-target=".forget-modal">Mot de passe oublié ?</a>
                 <hr>
@@ -221,15 +215,15 @@
 					<span aria-hidden="true">×</span>
 					<span class="sr-only">Fermer</span>
 				</button>
-				<h4 class="modal-title">Récuperation de mot de passe</h4>
+				<h4 class="modal-title">Récupération du mot de passe</h4>
 			</div>
 			<div class="modal-body">
-				<p>@ Email</p>
-				<input type="email" name="recovery-email" id="recovery-email" class="form-control" autocomplete="off">
+				<p>Insère ton email pour récupérer ton mot de passe</p>
+				<input type="email" name="recovery-email" id="recovery-email" class="form-control" autocomplete="off" placeholder="Email">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-				<button type="button" class="btn btn-custom">Récuperer</button>
+				<button type="button" class="btn btn-custom">Récupérer</button>
 			</div>
 		</div> <!-- /.modal-content -->
 	</div> <!-- /.modal-dialog -->

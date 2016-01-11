@@ -76,7 +76,7 @@ imrApp.controller('mainController', function($scope, Page) {
   $scope.filter={};
   $scope.filter.group='0';
   $scope.filter.from='';
-  $scope.filter.oldEvents="Afficher Tâches passées";
+  $scope.filter.oldEvents="Afficher les tâches passées";
 $scope.getTasks=function(){
   $http.post('./php/agenda.php?action=getTasks&group='+$scope.filter.group+"&from="+$scope.filter.from).success(function(data, status, headers, config) {
     $scope.tasks = data;
