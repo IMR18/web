@@ -27,9 +27,11 @@ switch($action){
 			$ressources=isset($_GET["ressource"]) && !empty($_GET["ressource"]) ? $_GET["ressource"] : "1";
 			if($ressources!='1')
 			$ressources="'".implode("','",explode(",",$ressources))."'";
-			$req=$db->prepare("select UID as id, StartDate,EndDate,StartTime,EndTime,Title as title,location from events where ressource in ($ressources) or 1=?");
+			$req=$db->prepare("select UID as id, StartDate,EndDate,StartTime,EndTime,GROUP_CONCAT(DISTINCT r.name) as ressource ,Title as title,location from events e left join ressources r on e.ressource = r.number where ressource in ($ressources) or 1=? group by UID");
 			$req->execute(array($ressources));
 			$res=$req->fetchAll(PDO::FETCH_ASSOC);
+			foreach(array_count_values($res) as $val => $c)
+    		if($c > 1) $dups[] = $val;
 			$classes=array('color_DEB887','color_5F9EA0','color_7FFF00','color_D2691E','color_FF7F50','color_FFF8DC','color_00FFFF','color_DC143C','color_00008B','color_008B8B','color_B8860B','color_A9A9A9','color_006400','color_BDB76B','color_8B008B','color_FF8C00');
 			for($i=0;$i<sizeof($res);$i++){
 				$titles[$i]=$res[$i]['title'];
@@ -39,7 +41,7 @@ switch($action){
 				$res[$i]['start']=date8601($res[$i]['StartDate'],$res[$i]['StartTime']);
 				$res[$i]['end']=date8601($res[$i]['EndDate'],$res[$i]['EndTime']);
 				$res[$i]['class']=$classes[(array_search($res[$i]['title'],$titles))];
-				$res[$i]['title']=	$res[$i]['title']."<br/>".	$res[$i]['location'];
+				$res[$i]['title']=	$res[$i]['title']."<br/>".	$res[$i]['location']."<br/>".	$res[$i]['ressource'];
 				unset(	$res[$i]['location'],$res[$i]['StartDate'],$res[$i]['StartTime'],$res[$i]['EndDate'],$res[$i]['EndTime']);
 			}
 			break;
@@ -77,6 +79,13 @@ switch($action){
 	case "getRessourcesIdByTag":
 			$tag = isset($_GET["tag"]) && !empty($_GET["tag"]) ? $_GET["tag"] : exit;
 			$req=$db->prepare("SELECT number FROM ressources WHERE tags LIKE \"%".$tag."%\" limit 1");
+			$req->execute();
+			$res=$req->fetchAll(PDO::FETCH_ASSOC);
+			break;
+
+	case "getRessourcesByName":
+			$name = isset($_GET["name"]) && !empty($_GET["name"]) ? $_GET["name"] : exit;
+			$req=$db->prepare("SELECT * FROM ressources WHERE name LIKE \"%".$name."%\" order by name limit 30");
 			$req->execute();
 			$res=$req->fetchAll(PDO::FETCH_ASSOC);
 			break;
