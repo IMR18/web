@@ -30,10 +30,10 @@
 		<th>Nombre de mots</th>
 		<th>Ratio</th>
 	</tr>
-	<!-- Fonction qui permettra de générer la liste des participants -->
+	<!-- Fonction qui permet de générer la liste des participants -->
 	<tr ng-repeat="donnees in topscore">
 		<td>{{donnees.rank}}</td><!-- classement -->
-	    <td>{{donnees.prenom}}</td><!-- prénom -->
+	  <td>{{donnees.prenom}}</td><!-- prénom -->
 		<td>{{donnees.score}}</td><!-- score -->
 		<td>{{donnees.nb_mots}}</td><!-- nb_mots -->
 		<td>{{donnees.ratio}}</td><!-- ratio = score/nb_mots -->

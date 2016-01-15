@@ -21,32 +21,60 @@ function searchForCurrentWord()
  		
  		$new=array();
 
-		$params = $db->query('SELECT COUNT(*) as nb_mots FROM wordchallenge GROUP BY iduser'); // Récup du nombre de mots
+ 		$params = $db->query('SELECT COUNT(*) as nb_users FROM users'); // Récup du nombre de users
+		$compt_users=$params->fetchAll(PDO::FETCH_ASSOC);
+
+		$params = $db->query('SELECT iduser,COUNT(*) as nb_mots FROM wordchallenge GROUP BY iduser'); // Récup du nombre de mots
 		$new=$params->fetchAll(PDO::FETCH_ASSOC);
 
-		$params=$db->query('SELECT iduser,level,level*COUNT(*) FROM wordchallenge GROUP BY iduser,level'); // Récup du ratio et du score
+		$params=$db->query('SELECT iduser,level*COUNT(*) FROM wordchallenge GROUP BY iduser,level'); // Récup du ratio et du score
 		$res=$params->fetchAll(PDO::FETCH_ASSOC);
 
-		$params=$db->query('SELECT iduser,prenom FROM users,wordchallenge WHERE users.id=wordchallenge.iduser group by iduser'); // Récup le prénom en fonction de l'id user
+		$params=$db->query('SELECT id,prenom FROM users'); // Récup le prénom en fonction de l'id user
 		$name=$params->fetchAll(PDO::FETCH_ASSOC);
-
-		$j=0;
-		for ($i=0; $i < count($new); $i++) {
-			$new[$i]['id']=0;
+		
+$j=1;
+		for ($i=0; $i <= $compt_users[0]['nb_users']; $i++) {
 			$new[$i]['score']=0;
 			$new[$i]['ratio']=0;
+			$new[$i]['nb_mots']=0;
 
-			while($res[$j]['iduser'] == $i){
-
-				$new[$i]['score']+=$res[$j]['level*COUNT(*)'];
-				$j++;
-				if($j>=count($res))break;
+			if($j-1==0)
+				$new[$i]['score']=$res[$j-1]['level*COUNT(*)'];
+			else{
+				$new[$i]['score']=$res[$j]['level*COUNT(*)'];
 			}
-			$new[$i]['id']=$i;
+
+					while($res[$j]['iduser'] == $res[$j-1]['iduser']){
+							$new[$i]['score']+=$res[$j]['level*COUNT(*)'];
+							$new[$i]['nb_mots']++;
+							$j++;
+					}
 			
-			if($new[$i]['nb_mots']!=0)
-				$new[$i]['ratio']=round($new[$i]['score']/$new[$i]['nb_mots'],2);			
+			echo "score [$i]".$new[$i]['score']."\n\n";
+
+			for($j=0;$j< count($name);$j++){
+
+					if($name[$j]['id'] == $i)
+							$new[$i]['prenom']=$name[$j]['prenom'];
+			}
+
+			if(isset($new[$i]['nb_mots']) && $new[$i]['nb_mots']!=0)
+				$new[$i]['ratio']=round($new[$i]['score']/$new[$i]['nb_mots'],2);
+			
 		}
+			print_r($new);
+
+		// $j++;
+
+		// for ($i=0; $i <= $compt_users[0]['nb_users']; $i++) {
+		// 	$new[$i]['id']=$i;
+		// 	$new[$i]['ratio']=0;
+			
+		// 	if(isset($new[$i]['nb_mots']) && $new[$i]['nb_mots']!=0)
+		// 		$new[$i]['ratio']=round($new[$i]['score']/$new[$i]['nb_mots'],2);
+		// }
+			// print_r($new);
 
 		unset($new[0]); // On retire le tableau des mots non trouvés
 		
@@ -57,11 +85,10 @@ function searchForCurrentWord()
 		}
 		array_multisort($score,SORT_DESC,$ratio,SORT_DESC,$new);
 
-		for ($i=0; $i < count($new); $i++){
+		
+		for ($i=0; $i < $compt_users[0]['nb_users']; $i++){
 			$new[$i]['rank']=$i+1;
-			$new[$i]['prenom']=$name[$new[$i]['id']-1]['prenom'];
 		}
-
 		return $new;
  }
 
@@ -83,14 +110,24 @@ function searchForCurrentWord()
  }
 
 
-function addWordToDB($word)
+function addWordToDB($word,$level)
 	{
 	$db=PDO();
-	$req=$db->prepare('INSERT INTO wordchallenge VALUES(NULL,?,NULL,NULL)');
+	$req=$db->prepare('INSERT INTO wordchallenge VALUES(NULL,?,?,0)');
 	
-	if($req->execute(array($word)))
+	if($req->execute(array($word,$level)))
 		return true;
 	else
 		return false;
 	}
 
+// function wordFounded($word,$level,$winner)
+// 	{
+// 	$db=PDO();
+// 	$req=$db->prepare('UPDATE wordchallenge SET(NULL,?,?,?)');
+	
+// 	if($req->execute(array($word,$level,$winner)))
+// 		return true;
+// 	else
+// 		return false;
+// 	}
