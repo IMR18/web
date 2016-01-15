@@ -38,12 +38,7 @@
         daysToShow: 5,
         minBodyHeight: 100,
         firstDayOfWeek: function(calendar) {
-                  if ($(calendar).weekCalendar('option', 'daysToShow') != 5) {
-                    return 0;
-                  } else {
-                    //workweek
                     return 1;
-                  }
               }, // 0 = Sunday, 1 = Monday, 2 = Tuesday, ... , 6 = Saturday
         useShortDayNames: false,
         timeSeparator: ' - ',
@@ -53,7 +48,7 @@
         newEventText: 'Nouvel Evenement',
         timeslotHeight: 17,
         defaultEventLength: 2,
-        timeslotsPerHour: 4,
+        timeslotsPerHour: 2,
         minDate: null,
         maxDate: null,
         showHeader: true,
@@ -64,8 +59,8 @@
           nextWeek: 'suivant'
         },
         switchDisplay: {},
-        scrollToHourMillis: 500,
-        allowEventDelete: false,
+        scrollToHourMillis: 200,
+        allowEventDelete: true,
         allowCalEventOverlap: true,
         overlapEventsSeparate: true,
         totalEventsWidthPercentInOneColumn: 100,
@@ -202,7 +197,7 @@
          * should the calendar display freebusys ?
          * @type {boolean}
          */
-        displayFreeBusys: false,
+        displayFreeBusys: true,
         /**
          * read the id(s) for who the freebusy is available
          * @param {Object} calEvent the calEvent to read informations from.
@@ -241,7 +236,7 @@
          * @type {Function|bool}
          */
         startOnFirstDayOfWeek: function(calendar) {
-          return $(calendar).weekCalendar('option', 'daysToShow') >= 5;
+          return $(calendar).weekCalendar('option', 'daysToShow') >= 0;
         },
         /**
          * should the columns be rendered alternatively using odd/even
@@ -249,7 +244,7 @@
          * @type {boolean}
          */
         displayOddEven: true,
-        textSize: 13,
+        textSize: 11,
         /**
          * the title attribute for the calendar. possible placeholders are:
          * <ul>

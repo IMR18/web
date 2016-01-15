@@ -11,4 +11,29 @@
     border: 1px solid #dda;
   }
   </style>
-<div id="timeTable"></div>
+
+<div ng-controller="timetableController">
+
+
+  <div class="col-md-12">
+  <angucomplete-alt
+  placeholder="Ressource"
+  pause="100"
+  remote-url="./php/ade.php?action=getRessourcesByName&name="
+  title-field="Name"
+  input-class="form-control" name="inputCours"
+  minlength="1"
+  text-no-results="aucun resultat"
+  selected-object="addSelectedId"
+  text-searching="Recherche en cours ..."
+  match-class="highlight"
+  class="col-md-4"
+  >
+</angucomplete-alt>
+  <p class="col-md-1 btn btn-info" style="margin-right:10px;" ng-repeat="ressourceName in ressources.selectedNames" >{{ressourceName}}
+    <a class="btn-danger-outline glyphicon glyphicon-remove pull-right" ng-click="delSelectedId($index)" ></a>
+  </p>
+</div>
+</div>
+<div id="timeTable" style="clear:both;"></div>
+</div>

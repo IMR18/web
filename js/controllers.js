@@ -14,57 +14,61 @@ imrApp.controller('mainController', function($scope, Page) {
 })
 
 .controller('timetableController', function($scope, $http, Page) {
-  Page.setTitle("Emploi du Temps");
+Page.setTitle("Emploi du Temps");
+$scope.events=[];
+$scope.ressources={};
+$scope.ressources.selectedIds=[];
+$scope.ressources.selectedNames=[];
+$scope.addSelectedId=function(id){
+  if(typeof(id)!='undefined'){
+       $scope.ressources.selectedIds.push(id.originalObject.number);
+       $scope.ressources.selectedNames.push(id.originalObject.Name);
+       $scope.$broadcast('angucomplete-alt:clearInput');
+       $scope.updateCal();
+  };
+};
 
-  $http.post('php/ade.php?action=getEventsJson&ressource=1492').success(function(data, status, headers, config){
-    $scope.events = data;
+$scope.delSelectedId=function($index){
+  $scope.ressources.selectedIds.splice($index,1);
+  $scope.ressources.selectedNames.splice($index,1);
+  $scope.updateCal();
+}
+
+
+$scope.updateCal=function(){
+  ressources=$scope.ressources.selectedIds;
+  console.log(ressources);
+  if(ressources.length==0)
+  {
+      ressources="NOTHING";
+  }
+  $http.post('php/ade.php?action=getEventsJson&ressource='+ressources).success(function(data, status, headers, config){
+   $scope.events = data;
+   $('#timeTable').weekCalendar("refresh");
+});
+}
     $('#timeTable').weekCalendar({
-      data: $scope.events,
+      data:function (start, end, callback) {
+                    callback( $scope.events);
+                  },
+
       date: new Date(),
-      minDate: new Date('2009-05-01T13:15:00.000+10:00'),
-      maxDate: new Date('2019-05-20T13:15:00.000+10:00'),
+      minDate: new Date('2000-05-01T13:15:00.000+10:00'),
+      maxDate: new Date('2020-05-20T13:15:00.000+10:00'),
       timeslotsPerHour: 2,
       height: function($calendar) {
-        return $(window).height();
+        return $(window).height()-185;
       },
       eventRender: function(calEvent, $event) {
         if (calEvent.end.getTime() < new Date().getTime()) {
-          $event.css('backgroundColor', '#aaa');
-          $event.find('.time').css({
+          $event.css('backgroundColor', '#777');
+          $event.find('.wc-time').css({
             backgroundColor: '#999',
             border:'1px solid #888'
           });
         }
       },
-      eventNew: function(calEvent, $event) {
-        displayMessage('<strong>Added event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-        alert('You\'ve added a new event. You would capture this event, add the logic for creating a new event with your own fields, data and whatever backend persistence you require.');
-      },
-      eventDrop: function(calEvent, $event) {
-        displayMessage('<strong>Moved Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      },
-      eventResize: function(calEvent, $event) {
-        displayMessage('<strong>Resized Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      },
-      eventClick: function(calEvent, $event) {
-        displayMessage('<strong>Clicked Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      },
-      eventMouseover: function(calEvent, $event) {
-        displayMessage('<strong>Mouseover Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      },
-      eventMouseout: function(calEvent, $event) {
-        displayMessage('<strong>Mouseout Event</strong><br/>Start: ' + calEvent.start + '<br/>End: ' + calEvent.end);
-      },
-      noEvents: function() {
-        displayMessage('There are no events for this week');
-      },
-      reachedmindate: function($calendar, date) {
-        displayMessage('You reached mindate');
-      },
-      reachedmaxdate: function($calendar, date) {
-        displayMessage('You cannot go further');
-      }
-    });
+
   });
 
 })
